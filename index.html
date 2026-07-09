@@ -1,2013 +1,473 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Proto Kil | Robotics Engineering Portfolio</title>
-
-  <!--
-    =========================================================
-    길종헌 포트폴리오 HTML 템플릿
-    - JavaScript 없이 동작하는 정적 HTML/CSS 포트폴리오입니다.
-    - 파일명을 portfolio.html로 저장한 뒤 브라우저에서 열면 됩니다.
-    - 이미지 파일은 같은 폴더에 /assets 폴더를 만들고 넣는 것을 추천합니다.
-    - 예: assets/basketball-robot-main.jpg
-    =========================================================
-  -->
-
-  <style>
-    /* =========================
-       1. 기본 설정
-       ========================= */
-    :root {
-      --font-main: "Pretendard", "SUIT", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --font-mono: "JetBrains Mono", "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
-      --bg: #0f1115;
-      --bg-soft: #161b22;
-      --card: #1d2430;
-      --card-light: #222b38;
-      --text: #f3f4f6;
-      --muted: #a7b0c0;
-      --line: rgba(255, 255, 255, 0.12);
-      --accent: #3b82f6;
-      --accent-2: #06b6d4;
-      --accent-soft: rgba(59, 130, 246, 0.14);
-      --success: #22c55e;
-      --warning: #f59e0b;
-      --max-width: 1180px;
-      --radius: 22px;
-      --shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
-    }
-
-    /*
-      CSS-only light mode
-      - JavaScript 없이 토글됩니다.
-      - 브라우저를 새로고침하면 기본 다크 모드로 돌아옵니다.
-      - 상태 저장이 필요하면 나중에 짧은 JS를 추가하면 됩니다.
-    */
-    body:has(#theme-toggle:checked),
-    body.light-mode {
-      --bg: #f7f8fb;
-      --bg-soft: #ffffff;
-      --card: #ffffff;
-      --card-light: #eef2f7;
-      --text: #111827;
-      --muted: #4b5563;
-      --line: rgba(17, 24, 39, 0.14);
-      --accent: #2563eb;
-      --accent-2: #0891b2;
-      --accent-soft: rgba(37, 99, 235, 0.10);
-      --shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: var(--font-main);
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(59, 130, 246, 0.24), transparent 36%),
-        radial-gradient(circle at top right, rgba(6, 182, 212, 0.14), transparent 34%),
-        var(--bg);
-      line-height: 1.65;
-      word-break: keep-all;
-      transition: background 0.24s ease, color 0.24s ease;
-    }
-
-    body:has(#theme-toggle:checked),
-    body.light-mode {
-      background:
-        radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 36%),
-        radial-gradient(circle at top right, rgba(8, 145, 178, 0.10), transparent 34%),
-        var(--bg);
-    }
-
-    /* 라이트 모드에서 고정 색상 때문에 글자가 흐려지는 부분 보정 */
-    body:has(#theme-toggle:checked) h1,
-    body:has(#theme-toggle:checked) h2,
-    body:has(#theme-toggle:checked) h3,
-    body:has(#theme-toggle:checked) h4,
-    body.light-mode h1,
-    body.light-mode h2,
-    body.light-mode h3,
-    body.light-mode h4 {
-      color: #111827;
-    }
-
-    body:has(#theme-toggle:checked) .hero h1,
-    body.light-mode .hero h1 {
-      color: #0f172a;
-    }
-
-    body:has(#theme-toggle:checked) .eyebrow,
-    body.light-mode .eyebrow {
-      color: #0369a1;
-    }
-
-    body:has(#theme-toggle:checked) .lead,
-    body.light-mode .lead {
-      color: #334155;
-    }
-
-    body:has(#theme-toggle:checked) p,
-    body:has(#theme-toggle:checked) .muted,
-    body.light-mode p,
-    body.light-mode .muted {
-      color: #4b5563;
-    }
-
-    body:has(#theme-toggle:checked) .highlight,
-    body.light-mode .highlight {
-      color: #111827;
-    }
-
-    body:has(#theme-toggle:checked) .pill,
-    body.light-mode .pill {
-      color: #1f2937;
-      background: rgba(255, 255, 255, 0.72);
-      border-color: rgba(17, 24, 39, 0.14);
-    }
-
-    body:has(#theme-toggle:checked) .btn-secondary,
-    body.light-mode .btn-secondary {
-      color: #111827;
-      background: rgba(255, 255, 255, 0.72);
-      border-color: rgba(17, 24, 39, 0.14);
-    }
-
-    body:has(#theme-toggle:checked) .project-thumb,
-    body:has(#theme-toggle:checked) .media-placeholder,
-    body.light-mode .project-thumb,
-    body.light-mode .media-placeholder {
-      color: #475569;
-    }
-
-    body:has(#theme-toggle:checked) .hero-visual-placeholder strong,
-    body.light-mode .hero-visual-placeholder strong {
-      color: #0f172a;
-    }
-
-    body:has(#theme-toggle:checked) .hero-visual-placeholder span,
-    body.light-mode .hero-visual-placeholder span {
-      color: #475569;
-    }
-
-    body:has(#theme-toggle:checked) .spec-box b,
-    body.light-mode .spec-box b {
-      color: #111827;
-    }
-
-    body:has(#theme-toggle:checked) .spec-box,
-    body.light-mode .spec-box {
-      background: rgba(255, 255, 255, 0.84);
-      border-color: rgba(17, 24, 39, 0.12);
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
-    }
-
-    body:has(#theme-toggle:checked) .spec-box span,
-    body.light-mode .spec-box span {
-      color: #4b5563;
-    }
-
-    body:has(#theme-toggle:checked) .tag,
-    body.light-mode .tag {
-      color: #1e3a8a;
-      background: rgba(37, 99, 235, 0.10);
-      border-color: rgba(37, 99, 235, 0.20);
-    }
-
-    body:has(#theme-toggle:checked) .arch-node,
-    body.light-mode .arch-node {
-      color: #1e3a8a;
-      background: rgba(37, 99, 235, 0.08);
-      border-color: rgba(37, 99, 235, 0.22);
-    }
-
-    body:has(#theme-toggle:checked) .arrow-note,
-    body.light-mode .arrow-note {
-      color: #475569;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      border-radius: 20px;
-      max-width: 100%;
-      display: block;
-    }
-
-    .rounded-img {
-      width: 100%;
-      border-radius: 32px;
-      display: block;
-    }
-
-    .container {
-      width: min(100% - 40px, var(--max-width));
-      margin: 0 auto;
-    }
-
-    .section {
-      padding: 92px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .section-title {
-      display: grid;
-      gap: 12px;
-      margin-bottom: 34px;
-    }
-
-    .eyebrow {
-      color: var(--accent-2);
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    h1, h2, h3, h4, p {
-      margin-top: 0;
-    }
-
-    h1 {
-      font-size: clamp(2.25rem, 5.6vw, 5rem);
-      line-height: 1.08;
-      letter-spacing: -0.045em;
-      margin-bottom: 24px;
-      font-weight: 850;
-    }
-
-    h2 {
-      font-size: clamp(1.85rem, 3.5vw, 2.9rem);
-      line-height: 1.16;
-      letter-spacing: -0.035em;
-      margin-bottom: 0;
-      font-weight: 830;
-    }
-
-    h3 {
-      font-size: 1.28rem;
-      line-height: 1.34;
-      letter-spacing: -0.015em;
-      margin-bottom: 12px;
-      font-weight: 800;
-    }
-
-    p {
-      color: var(--muted);
-      font-size: 0.98rem;
-    }
-
-    .lead {
-      font-size: clamp(1.02rem, 1.7vw, 1.18rem);
-      color: #d8dee9;
-      max-width: 790px;
-    }
-
-    .muted {
-      color: var(--muted);
-    }
-
-    .highlight {
-      color: white;
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 22px;
-    }
-
-    .pill {
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.05);
-      padding: 8px 12px;
-      border-radius: 999px;
-      color: #d7e0ee;
-      font-size: 0.88rem;
-    }
-
-    .btn-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 34px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 13px 18px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      font-weight: 700;
-      transition: transform 0.18s ease, background 0.18s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: white;
-      border: none;
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.05);
-      color: #e5e7eb;
-    }
-
-    /* =========================
-       1-1. JS 기능용 UI
-       ========================= */
-    .scroll-progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 999;
-      width: 0%;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      transition: width 0.08s linear;
-    }
-
-    .back-to-top {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      z-index: 120;
-      width: 46px;
-      height: 46px;
-      display: grid;
-      place-items: center;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: color-mix(in srgb, var(--bg) 78%, transparent);
-      color: var(--text);
-      box-shadow: var(--shadow);
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(10px);
-      transition: opacity 0.18s ease, transform 0.18s ease;
-    }
-
-    .back-to-top.is-visible {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0);
-    }
-
-    .project-filter {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-
-    .filter-btn {
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.055);
-      color: var(--text);
-      padding: 9px 13px;
-      border-radius: 999px;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .filter-btn.is-active {
-      border-color: transparent;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: white;
-    }
-
-    .project-card.is-hidden {
-      display: none;
-    }
-
-    .nav-links a.is-active {
-      color: var(--text);
-      font-weight: 800;
-    }
-
-    /* =========================
-       2. 상단 네비게이션
-       ========================= */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(18px);
-      background: color-mix(in srgb, var(--bg) 76%, transparent);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .nav {
-      position: relative;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      min-height: 66px;
-      gap: 20px;
-    }
-
-    .site-header .container.nav {
-      width: calc(100% - 32px);
-      max-width: none;
-    }
-
-    .logo {
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      z-index: 110;
-    }
-
-    .logo span {
-      color: var(--accent-2);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 18px;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      z-index: 110;
-    }
-
-    .nav-toggle,
-    .theme-toggle {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .nav-button,
-    .theme-toggle-label {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 38px;
-      padding: 8px 12px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.055);
-      color: var(--text);
-      font-size: 0.88rem;
-      font-weight: 800;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .nav-button {
-      display: none;
-    }
-
-    .theme-toggle-label .dark-text {
-      display: none;
-    }
-
-    body:has(#theme-toggle:checked) .theme-toggle-label .light-text,
-    body.light-mode .theme-toggle-label .light-text {
-      display: none;
-    }
-
-    body:has(#theme-toggle:checked) .theme-toggle-label .dark-text,
-    body.light-mode .theme-toggle-label .dark-text {
-      display: inline;
-    }
-
-    body:has(#theme-toggle:checked) .card,
-    body:has(#theme-toggle:checked) .project-detail,
-    body:has(#theme-toggle:checked) .story-box,
-    body:has(#theme-toggle:checked) .info-item,
-    body:has(#theme-toggle:checked) .timeline-item,
-    body:has(#theme-toggle:checked) .scale-card,
-    body:has(#theme-toggle:checked) details,
-    body.light-mode .card,
-    body.light-mode .project-detail,
-    body.light-mode .story-box,
-    body.light-mode .info-item,
-    body.light-mode .timeline-item,
-    body.light-mode .scale-card,
-    body.light-mode details {
-      background: rgba(255, 255, 255, 0.86);
-    }
-
-    body:has(#theme-toggle:checked) .hero-card,
-    body:has(#theme-toggle:checked) .project-thumb,
-    body:has(#theme-toggle:checked) .media-placeholder,
-    body.light-mode .hero-card,
-    body.light-mode .project-thumb,
-    body.light-mode .media-placeholder {
-      background-color: var(--card-light);
-    }
-
-    /* =========================
-       3. 히어로 영역
-       ========================= */
-    .hero {
-      min-height: calc(100vh - 66px);
-      display: grid;
-      align-items: center;
-      padding: 92px 0;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 42px;
-      align-items: center;
-    }
-
-    .hero-card {
-      position: relative;
-      min-height: 520px;
-      border-radius: 36px;
-      overflow: hidden;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
-        var(--card);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-visual-placeholder {
-      height: 100%;
-      min-height: 520px;
-      display: grid;
-      place-items: top;
-      padding: 5px;
-      text-align: bottom;
-      background:
-        linear-gradient(135deg, rgba(59, 130, 246, 0.22), transparent),
-        repeating-linear-gradient(45deg, rgba(255,255,255,0.045) 0 1px, transparent 1px 16px);
-    }
-
-    .hero-visual-placeholder strong {
-      display: block;
-      font-size: 1.55rem;
-      margin-bottom: 8px;
-    }
-
-    .floating-spec {
-      position: absolute;
-      left: 24px;
-      right: 24px;
-      bottom: 24px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    .spec-box {
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 14px;
-      background: rgba(15, 17, 21, 0.72);
-      backdrop-filter: blur(16px);
-    }
-
-    .spec-box b {
-      display: block;
-      font-size: 1.2rem;
-    }
-
-    .spec-box span {
-      color: var(--muted);
-      font-size: 0.82rem;
-    }
-
-    /* =========================
-       4. 카드 / 그리드 공통
-       ========================= */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 22px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .card {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.026));
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.16);
-    }
-
-    .card:hover {
-      border-color: rgba(59, 130, 246, 0.48);
-    }
-
-    .metric {
-      font-size: 2rem;
-      font-weight: 850;
-      letter-spacing: -0.05em;
-      color: white;
-      margin-bottom: 4px;
-    }
-
-    .card-label {
-      color: var(--accent-2);
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .project-card {
-      display: grid;
-      gap: 18px;
-      padding: 0;
-      overflow: hidden;
-    }
-
-    .project-thumb {
-      height: 250px;
-      background:
-        linear-gradient(135deg, rgba(59, 130, 246, 0.22), rgba(6, 182, 212, 0.10)),
-        var(--card-light);
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      text-align: center;
-      padding: 20px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .project-body {
-      padding: 0 24px 24px;
-    }
-
-    .project-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 16px 0;
-    }
-
-    .tag {
-      font-size: 0.78rem;
-      color: #dbeafe;
-      padding: 5px 9px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      border: 1px solid rgba(59, 130, 246, 0.22);
-    }
-
-    /* =========================
-       5. 프로젝트 상세 레이아웃
-       ========================= */
-    .project-detail {
-      padding: 42px;
-      border-radius: 32px;
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid var(--line);
-      margin-bottom: 34px;
-    }
-
-    .project-heading {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 24px;
-      align-items: start;
-      padding-bottom: 28px;
-      border-bottom: 1px solid var(--line);
-      margin-bottom: 28px;
-    }
-
-    .project-info {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .info-item {
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 14px;
-      background: rgba(255, 255, 255, 0.035);
-    }
-
-    .info-item span {
-      display: block;
-      color: var(--muted);
-      font-size: 0.78rem;
-    }
-
-    .info-item b {
-      display: block;
-      margin-top: 4px;
-      font-size: 0.93rem;
-    }
-
-    .story-grid {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 26px;
-      align-items: start;
-    }
-
-    .story-box {
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 22px;
-    }
-
-    .story-box h4 {
-      margin-bottom: 8px;
-      color: white;
-    }
-
-    .challenge-list {
-      display: grid;
-      gap: 14px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .challenge-list li {
-      padding: 16px;
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid var(--line);
-    }
-
-    .challenge-list b {
-      color: white;
-    }
-
-    .media-placeholder {
-      min-height: 360px;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 26px;
-      border-radius: 24px;
-      border: 1px dashed rgba(255, 255, 255, 0.24);
-      background:
-        linear-gradient(135deg, rgba(6, 182, 212, 0.10), rgba(59, 130, 246, 0.12)),
-        rgba(255, 255, 255, 0.025);
-      color: var(--muted);
-    }
-
-    .architecture {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .arch-node {
-      min-height: 96px;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 12px;
-      border-radius: 18px;
-      background: rgba(59, 130, 246, 0.10);
-      border: 1px solid rgba(59, 130, 246, 0.26);
-      color: #dbeafe;
-      font-weight: 700;
-    }
-
-    .arrow-note {
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    details {
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 16px 18px;
-      background: rgba(255, 255, 255, 0.035);
-    }
-
-    details + details {
-      margin-top: 12px;
-    }
-
-    summary {
-      cursor: pointer;
-      font-weight: 800;
-      color: white;
-    }
-
-    summary::marker {
-      color: var(--accent-2);
-    }
-
-    .code-like {
-      font-family: var(--font-mono);
-      font-size: 0.9rem;
-      color: #dbeafe;
-      background: #0b1020;
-      border: 1px solid var(--line);
-      padding: 16px;
-      border-radius: 16px;
-      overflow-x: auto;
-    }
-
-    /* =========================
-       6. 타임라인 / 스킬
-       ========================= */
-    .timeline {
-      display: grid;
-      gap: 16px;
-    }
-
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 18px;
-      padding: 20px;
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.035);
-    }
-
-    .timeline-date {
-      color: var(--accent-2);
-      font-weight: 800;
-    }
-
-    .skill-group {
-      display: grid;
-      gap: 14px;
-    }
-
-    .skill-group h3 {
-      margin-bottom: 0;
-    }
-
-    .skill-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .skill-scale {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-bottom: 24px;
-    }
-
-    .skill-category-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 22px;
-    }
-
-    .scale-card {
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 14px 16px;
-      background: rgba(255, 255, 255, 0.035);
-    }
-
-    .compact-scale .scale-card {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      grid-template-areas:
-        "mark title"
-        "mark desc";
-      column-gap: 13px;
-      align-items: center;
-    }
-
-    .compact-scale .scale-mark {
-      grid-area: mark;
-      margin-bottom: 0;
-    }
-
-    .compact-scale h3 {
-      grid-area: title;
-      margin-bottom: 2px;
-      font-size: 1rem;
-    }
-
-    .compact-scale p {
-      grid-area: desc;
-      margin: 0;
-      font-size: 0.86rem;
-    }
-
-    .scale-mark {
-      display: inline-flex;
-      gap: 5px;
-      margin-bottom: 10px;
-      font-family: var(--font-mono);
-      color: var(--accent-2);
-      font-weight: 900;
-      letter-spacing: 0.06em;
-    }
-
-    .skill-table {
-      display: grid;
-      gap: 12px;
-    }
-
-    .skill-item {
-      display: grid;
-      grid-template-columns: minmax(150px, 0.8fr) minmax(100px, auto) 2fr;
-      gap: 16px;
-      align-items: center;
-      padding: 15px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .skill-item:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .skill-name {
-      font-weight: 850;
-      color: var(--text);
-    }
-
-    .skill-note {
-      margin: 0;
-      font-size: 0.92rem;
-      color: var(--muted);
-    }
-
-    .skill-meter {
-      display: inline-flex;
-      gap: 5px;
-      align-items: center;
-      white-space: nowrap;
-    }
-
-    .skill-meter span {
-      width: 26px;
-      height: 7px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.055);
-    }
-
-    .skill-meter.level-1 span:nth-child(1),
-    .skill-meter.level-2 span:nth-child(-n+2),
-    .skill-meter.level-3 span:nth-child(-n+3) {
-      border-color: transparent;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    }
-
-    .skill-level-text {
-      display: block;
-      margin-top: 5px;
-      font-size: 0.74rem;
-      color: var(--muted);
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    @media (max-width: 760px) {
-      .skill-scale,
-      .skill-category-grid,
-      .skill-item {
-        grid-template-columns: 1fr;
-      }
-
-      .skill-item {
-        gap: 8px;
-      }
-    }
-
-    /* =========================
-       7. 푸터
-       ========================= */
-    footer {
-      padding: 46px 0 70px;
-      color: var(--muted);
-      border-top: 1px solid var(--line);
-    }
-
-    /* =========================
-       8. 반응형
-       ========================= */
-    @media (max-width: 960px) {
-      .hero-grid,
-      .story-grid,
-      .grid-2,
-      .grid-3 {
-        grid-template-columns: 1fr;
-      }
-
-      .project-heading {
-        grid-template-columns: 1fr;
-      }
-
-      .project-info {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .architecture {
-        grid-template-columns: 1fr;
-      }
-
-      .nav {
-        gap: 12px;
-      }
-
-      .nav-button {
-        display: inline-flex;
-      }
-
-      .nav-links {
-        position: absolute;
-        top: calc(100% + 10px);
-        left: 0;
-        right: 0;
-        display: grid;
-        gap: 6px;
-        padding: 14px;
-        border: 1px solid var(--line);
-        border-radius: 20px;
-        background: color-mix(in srgb, var(--bg) 94%, transparent);
-        box-shadow: var(--shadow);
-        opacity: 0;
-        pointer-events: none;
-        transform: translateY(-8px);
-        transition: opacity 0.18s ease, transform 0.18s ease;
-      }
-
-      .nav-links a {
-        padding: 12px 14px;
-        border-radius: 14px;
-        background: rgba(255, 255, 255, 0.04);
-      }
-
-      .nav-links a:hover {
-        background: var(--accent-soft);
-      }
-
-      #nav-toggle:checked ~ .nav-links {
-        opacity: 1;
-        pointer-events: auto;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 640px) {
-      .container {
-        width: min(100% - 28px, var(--max-width));
-      }
-
-      .section {
-        padding: 70px 0;
-      }
-
-      .hero {
-        padding: 64px 0;
-      }
-
-      .hero-card,
-      .hero-visual-placeholder {
-        min-height: 430px;
-      }
-
-      .floating-spec {
-        grid-template-columns: 1fr;
-      }
-
-      .project-detail {
-        padding: 24px;
-      }
-
-      .project-info,
-      .timeline-item {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* =========================
-       9. 출력 / PDF 저장용 스타일
-       브라우저에서 Ctrl+P → PDF로 저장 가능
-       ========================= */
-    @media print {
-      :root {
-        --bg: #ffffff;
-        --bg-soft: #ffffff;
-        --card: #ffffff;
-        --card-light: #ffffff;
-        --text: #111827;
-        --muted: #374151;
-        --line: #d1d5db;
-        --accent: #1d4ed8;
-        --accent-2: #0369a1;
-        --accent-soft: #eff6ff;
-      }
-
-      body {
-        background: white;
-        color: #111827;
-        font-size: 11pt;
-      }
-
-      .site-header,
-      .btn-row,
-      .media-placeholder,
-      .hero-card {
-        display: none !important;
-      }
-
-      .section {
-        padding: 34px 0;
-        page-break-inside: avoid;
-      }
-
-      .project-detail,
-      .card,
-      .story-box,
-      .timeline-item {
-        box-shadow: none;
-        background: white;
-      }
-
-      h1 {
-        font-size: 32pt;
-      }
-
-      h2 {
-        font-size: 22pt;
-      }
-
-      h3 {
-        font-size: 15pt;
-      }
-
-      a {
-        color: #111827;
-      }
-    }
-  </style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Proto Kil | Robotics Engineering Portfolio</title>
+<!--
+  =========================================================
+  ProtoKIL 포트폴리오
+  - CSS, JavaScript, 프로젝트 데이터를 분리한 정적 GitHub Pages 구조입니다.
+  - assets/ 폴더에는 이미지와 영상을 넣습니다.
+  =========================================================
+-->
+<link href="styles/main.css" rel="stylesheet"/>
 </head>
-
 <body>
-  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-  <a class="back-to-top" id="backToTop" href="#top" aria-label="맨 위로 이동">↑</a>
-  <!-- =========================
+<div aria-hidden="true" class="scroll-progress" id="scrollProgress"></div>
+<a aria-label="맨 위로 이동" class="back-to-top" href="#top" id="backToTop">&uarr;</a>
+<!-- =========================
        Header
        ========================= -->
-  <header class="site-header">
-    <div class="container nav">
-      <a class="logo" href="#top">Proto<span>.</span>Portfolio</a>
+<header class="site-header">
+<div class="container nav">
+<a class="logo" href="#top">Proto<span>KIL</span></a>
+<!-- JS 없이 동작하는 모바일 메뉴 토글 -->
+<input aria-label="모바일 메뉴 열기" class="nav-toggle" id="nav-toggle" type="checkbox"/>
 
-      <!-- JS 없이 동작하는 모바일 메뉴 토글 -->
-      <input class="nav-toggle" type="checkbox" id="nav-toggle" aria-label="모바일 메뉴 열기" />
 
-      <!-- JS 없이 동작하는 라이트/다크 모드 토글 -->
-      <input class="theme-toggle" type="checkbox" id="theme-toggle" aria-label="라이트 모드 전환" />
+<nav aria-label="주요 메뉴" class="nav-links">
+<a href="#projects">Projects</a>
+<a href="#about">About</a>
+<a href="#details">Case Study</a>
+<a href="#skills">Skills</a>
+<a href="#experience">Experience</a>
+<a href="#contact">Contact</a>
+</nav>
+<div class="nav-actions">
 
-      <nav class="nav-links" aria-label="주요 메뉴">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#details">Case Study</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
-      </nav>
-
-      <div class="nav-actions">
-        <label class="theme-toggle-label" for="theme-toggle">
-          <span class="light-text">Light</span>
-          <span class="dark-text">Dark</span>
-        </label>
-        <label class="nav-button" for="nav-toggle">Menu</label>
-      </div>
-    </div>
-  </header>
-
-  <main id="top">
-    <!-- =========================
+<label class="nav-button" for="nav-toggle">Menu</label>
+</div>
+</div>
+</header>
+<main id="top">
+<!-- =========================
          Hero
          ========================= -->
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow">Mechanical · Robotics · Embedded Systems</div>
-          <h1>Every creation is the starting point for the next prototype. Engineering ideas into reality.</h1>
-          <p class="lead">
+<section class="hero">
+<div class="container hero-grid">
+<div class="hero-copy">
+<div class="eyebrow">Mechanical &middot; Robotics &middot; Embedded Systems</div>
+<h1>현장의 문제를 구조화하고, 실제로 움직이는 로봇으로 구현합니다.</h1>
+<p class="lead">
             기계공학 기반의 설계 역량과 임베디드/비전/ROS 프로젝트 경험을 바탕으로,
             아이디어를 CAD 모델과 하드웨어, 제어 로직, 테스트 결과까지 연결하는 엔지니어를 지향합니다.
           </p>
-
-          <div class="pill-row" aria-label="핵심 역량">
-            <span class="pill">Mechanical Design</span>
-            <span class="pill">Robot Prototyping</span>
-            <span class="pill">OpenCV</span>
-            <span class="pill">Arduino</span>
-            <span class="pill">ROS2</span>
-            <span class="pill">LiDAR Mapping</span>
-            <span class="pill">Sensor Integration</span>
-          </div>
-
-          <div class="btn-row">
-            <a class="btn btn-primary" href="#projects">View Projects</a>
-            <a class="btn btn-secondary" href="#contact">Contact</a>
-          </div>
-        </div>
-
-        <aside class="hero-card" aria-label="대표 프로젝트 이미지 영역">
-          <!--
+<div aria-label="포트폴리오 핵심 요약" class="hero-proof-grid">
+<a class="hero-proof" href="#basketball">
+<span>Featured</span>
+<b>Basketball Shooting Robot</b>
+<em>OpenCV 기반 인식과 Arduino 제어를 결합한 대표 프로젝트</em>
+</a>
+<a class="hero-proof" href="#details">
+<span>Flow</span>
+<b>Design to Test</b>
+<em>CAD 설계, 센서 통합, 제어 로직, 디버깅까지 연결</em>
+</a>
+<a class="hero-proof" href="#skills">
+<span>Stack</span>
+<b>Vision / ROS2 / LiDAR</b>
+<em>실제 로봇 플랫폼에서 설명 가능한 기술 중심</em>
+</a>
+</div>
+<div aria-label="핵심 역량" class="pill-row">
+<span class="pill">Mechanical Design</span>
+<span class="pill">Robot Prototyping</span>
+<span class="pill">OpenCV</span>
+<span class="pill">Arduino</span>
+<span class="pill">ROS2</span>
+<span class="pill">LiDAR Mapping</span>
+<span class="pill">Sensor Integration</span>
+</div>
+<div class="btn-row">
+<a class="btn btn-primary" href="#projects">View Projects</a>
+<a class="btn btn-secondary" href="#contact">Contact</a>
+</div>
+</div>
+<aside aria-label="대표 프로젝트 이미지 영역" class="hero-card">
+<!--
             여기에 대표 이미지를 넣고 싶다면 아래 div 대신 img를 사용하세요.
             예시:
             <img src="assets/hero-robot.jpg" alt="농구 슈팅 로봇 대표 이미지" />
           -->
-          <div class="hero-visual-placeholder">
-            <img class="rounded-img" src="assets/png/basket.png" alt="농구 슈팅 로봇 대표 이미지" />
-          </div>
-
-          <div class="floating-spec">
-            <div class="spec-box">
-              <b>4+</b>
-              <span>Robotics Projects</span>
-            </div>
-            <div class="spec-box">
-              <b>CAD</b>
-              <span>Mechanical Design</span>
-            </div>
-            <div class="spec-box">
-              <b>ROS</b>
-              <span>Mapping / Control</span>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- =========================
+<div class="hero-image">
+<img alt="프로젝트들" src="assets/basketBallRobot/basket-shooting.png"/>
+</div>
+<div class="floating-spec">
+<div class="spec-box">
+<b>4+</b>
+<span>Robotics Projects</span>
+</div>
+<div class="spec-box">
+<b>CAD</b>
+<span>Mechanical Design</span>
+</div>
+<div class="spec-box">
+<b>ROS</b>
+<span>Mapping / Control</span>
+</div>
+</div>
+</aside>
+</div>
+</section>
+<section aria-label="빠른 포트폴리오 요약" class="portfolio-snapshot">
+<div class="container snapshot-grid">
+<a class="snapshot-item" href="#projects">
+<span>Selected Work</span>
+<b>3 featured robotics builds</b>
+</a>
+<a class="snapshot-item" href="#basketball">
+<span>Best Case</span>
+<b>Vision-guided shooting robot</b>
+</a>
+<a class="snapshot-item" href="#skills">
+<span>Core Skills</span>
+<b>CAD, embedded control, sensing</b>
+</a>
+</div>
+</section>
+<!-- =========================
          About
          ========================= -->
-    <section id="about" class="section">
-      <div class="container">
-        <div class="section-title">
-          <div class="eyebrow">About</div>
-          <h2>기구 설계와 실전 구현 사이의 간극을 줄이는 엔지니어</h2>
-        </div>
-
-        <div class="grid-2">
-          <article class="card">
-            <div class="card-label">Profile Summary</div>
-            <p>
+<section class="section" id="about">
+<div class="container">
+<div class="section-title">
+<div class="eyebrow">About</div>
+<h2>기구 설계와 실전 구현 사이의 간극을 줄이는 엔지니어</h2>
+</div>
+<div class="grid-2">
+<article class="card">
+<div class="card-label">Profile Summary</div>
+<p>
               저는 한국교통대학교 기계공학과에서 기계 설계와 로봇 시스템 구현을 중심으로 프로젝트를 수행해왔습니다.
               특히 농구 슈팅 로봇, LiDAR 기반 맵핑 로봇, 라인트레이싱 로봇, 센서 기반 연구 경험을 통해
               단순한 설계 결과물이 아니라 실제 환경에서 동작하는 시스템을 만드는 과정에 집중했습니다.
             </p>
-            <p>
+<p>
               포트폴리오에서는 결과물보다 <span class="highlight">문제 정의, 시행착오, 구조적 선택, 개선 과정</span>을 중심으로 정리했습니다.
             </p>
-          </article>
-
-          <article class="card">
-            <div class="card-label">Engineering Direction</div>
-            <p>
+</article>
+<article class="card">
+<div class="card-label">Engineering Direction</div>
+<p>
               제 관심 분야는 로봇 하드웨어, 기구 설계, 센서 통합, 자율주행 로봇 시스템입니다.
               제품이 실제로 움직이기 위해 필요한 구조, 전장, 제어, 테스트 조건을 함께 고려하는 엔지니어로 성장하고자 합니다.
             </p>
-            <div class="pill-row">
-              <span class="pill">Problem Definition</span>
-              <span class="pill">Prototype</span>
-              <span class="pill">Test & Debugging</span>
-              <span class="pill">System Integration</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================
+<div class="pill-row">
+<span class="pill">Problem Definition</span>
+<span class="pill">Prototype</span>
+<span class="pill">Test &amp; Debugging</span>
+<span class="pill">System Integration</span>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- =========================
          Featured Projects
          ========================= -->
-    <section id="projects" class="section">
-      <div class="container">
-        <div class="section-title">
-          <div class="eyebrow">Featured Projects</div>
-          <h2>문제 해결 흐름이 드러나는 대표 프로젝트</h2>
-          <p class="lead">
+<section class="section" id="projects">
+<div class="container">
+<div class="section-title">
+<div class="eyebrow">Featured Projects</div>
+<h2>문제 해결 흐름이 드러나는 대표 프로젝트</h2>
+<p class="lead">
             각 프로젝트는 단순한 결과물 소개가 아니라, 왜 만들었고 어떤 제약을 해결했는지 중심으로 정리했습니다.
           </p>
-        </div>
-
-        <div class="project-filter" aria-label="프로젝트 필터">
-          <button class="filter-btn is-active" type="button" data-filter="all">All</button>
-          <button class="filter-btn" type="button" data-filter="robotics">Robotics</button>
-          <button class="filter-btn" type="button" data-filter="vision">Vision</button>
-          <button class="filter-btn" type="button" data-filter="mapping">Mapping</button>
-        </div>
-
-        <div class="grid-3">
-          <article class="card project-card" data-category="robotics vision">
-            <div class="project-thumb">
-              Basketball Robot Image / GIF
-            </div>
-            <div class="project-body">
-              <h3>Basketball Shooting Robot</h3>
-              <p>
-                Raspberry Pi 환경에서 YOLO 기반 인식의 성능 한계를 경험한 뒤,
-                OpenCV 기반 경량 비전 파이프라인으로 재설계한 농구 슈팅 로봇 프로젝트입니다.
-              </p>
-              <div class="project-meta">
-                <span class="tag">OpenCV</span>
-                <span class="tag">Raspberry Pi</span>
-                <span class="tag">Arduino</span>
-                <span class="tag">Servo Control</span>
-              </div>
-              <a class="btn btn-secondary" href="#basketball">Read Case Study</a>
-            </div>
-          </article>
-
-          <article class="card project-card" data-category="robotics mapping">
-            <div class="project-thumb">
-              Mountain Robot Image / Render
-            </div>
-            <div class="project-body">
-              <h3>Autonomous Mountain Detection Robot</h3>
-              <p>
-                산악 환경에서의 탐지와 맵핑을 목표로, LiDAR와 AI Depth Camera,
-                열화상 카메라를 결합한 구조로봇 콘셉트 및 시스템 설계 프로젝트입니다.
-              </p>
-              <div class="project-meta">
-                <span class="tag">LiDAR</span>
-                <span class="tag">Depth Camera</span>
-                <span class="tag">Mapping</span>
-                <span class="tag">Robot Design</span>
-              </div>
-              <a class="btn btn-secondary" href="#mountain">Read Case Study</a>
-            </div>
-          </article>
-
-          <article class="card project-card" data-category="robotics mapping">
-            <div class="project-thumb">
-              ROS Mapping Result / RViz Capture
-            </div>
-            <div class="project-body">
-              <h3>Custom ROS2 Mapping Robot</h3>
-              <p>
-                YDLidar X4 Pro와 엔코더 모터를 활용해 키보드 제어, 시리얼 통신,
-                ROS2 기반 맵핑 구조를 구성한 자율주행 로봇 플랫폼 프로젝트입니다.
-              </p>
-              <div class="project-meta">
-                <span class="tag">ROS2</span>
-                <span class="tag">YDLidar</span>
-                <span class="tag">Serial</span>
-                <span class="tag">Motor PID</span>
-              </div>
-              <a class="btn btn-secondary" href="#ros">Read Case Study</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================
+</div>
+<div aria-label="프로젝트 필터" class="project-filter">
+<button class="filter-btn is-active" data-filter="all" type="button">All</button>
+<button class="filter-btn" data-filter="robotics" type="button">Robotics</button>
+<button class="filter-btn" data-filter="vision" type="button">Vision</button>
+<button class="filter-btn" data-filter="mapping" type="button">Mapping</button>
+</div>
+<div class="grid-3" id="featuredProjects"></div>
+</div>
+</section>
+<!-- =========================
          Project Details
          ========================= -->
-    <section id="details" class="section">
-      <div class="container">
-        <div class="section-title">
-          <div class="eyebrow">Case Study</div>
-          <h2>프로젝트 상세</h2>
-          <p class="lead">
-            아래 구조를 프로젝트마다 반복하면 “사진 나열”이 아니라 “엔지니어링 스토리”가 됩니다.
+<section class="section" id="details">
+<div class="container">
+<div class="section-title">
+<div class="eyebrow">Case Study</div>
+<h2>프로젝트 상세</h2>
+<p class="lead">
+            아래 구조를 프로젝트마다 반복하면 &ldquo;사진 나열&rdquo;이 아니라 &ldquo;엔지니어링 스토리&rdquo;가 됩니다.
           </p>
-        </div>
+</div>
+<!-- Basketball Project -->
 
-        <!-- Basketball Project -->
-        <article id="basketball" class="project-detail">
-          <div class="project-heading">
-            <div>
-              <div class="eyebrow">Project 01</div>
-              <h2>Basketball Shooting Robot</h2>
-              <p class="lead">
-                라즈베리파이 기반 환경에서 실시간 골대 인식과 슈팅 트리거를 구현하기 위해,
-                딥러닝 기반 접근의 한계를 분석하고 경량 비전 파이프라인으로 재설계한 프로젝트입니다.
-              </p>
-            </div>
-            <a class="btn btn-primary" href="#top">Back to Top</a>
-          </div>
+<!-- Mountain Robot Project -->
 
-          <div class="project-info">
-            <div class="info-item">
-              <span>Period</span>
-              <b>2024.07 - 2025.06</b>
-            </div>
-            <div class="info-item">
-              <span>Team</span>
-              <b>Team of 2</b>
-            </div>
-            <div class="info-item">
-              <span>Role</span>
-              <b>Vision / Control / Design</b>
-            </div>
-            <div class="info-item">
-              <span>Type</span>
-              <b>Capstone Design</b>
-            </div>
-          </div>
+<!-- ROS Project -->
 
-          <div class="story-grid" style="margin-top: 28px;">
-            <div class="media-placeholder">
-              <div>
-                <strong>대표 사진 / GIF / CAD Render</strong><br />
-                실제 로봇 사진, 골대 인식 장면, 슈팅 테스트 GIF를 넣으면 좋습니다.
-              </div>
-            </div>
-
-            <div class="story-box">
-              <h3>Project Story</h3>
-              <p>
-                이 프로젝트의 핵심은 단순히 공을 발사하는 장치를 만드는 것이 아니라,
-                제한된 연산 성능을 가진 임베디드 환경에서 골대를 안정적으로 인식하고,
-                그 결과를 실제 하드웨어 동작으로 연결하는 것이었습니다.
-              </p>
-              <p>
-                초기에는 YOLOv5 기반 객체 인식을 적용했지만, Raspberry Pi 환경에서 프레임 저하와
-                오검출 문제가 발생했습니다. 이후 골대의 사각형 구조, 색상 정보, 중심 좌표 안정성을 활용하는
-                OpenCV 기반 파이프라인으로 방향을 전환했습니다.
-              </p>
-            </div>
-          </div>
-
-          <div class="grid-2" style="margin-top: 24px;">
-            <div class="story-box">
-              <h3>Problem</h3>
-              <p>
-                딥러닝 모델은 인식 성능이 좋더라도 임베디드 환경에서는 추론 속도, 발열, 프레임 저하,
-                실시간 제어 지연 문제가 발생할 수 있었습니다.
-              </p>
-            </div>
-            <div class="story-box">
-              <h3>Approach</h3>
-              <p>
-                골대의 형태적 특징에 집중하여 HSV 필터링, Canny Edge, contour, 사각형 후보 검출,
-                중심 좌표 안정화 로직을 조합했습니다.
-              </p>
-            </div>
-          </div>
-
-          <div class="story-box" style="margin-top: 24px;">
-            <h3>System Architecture</h3>
-            <div class="architecture" aria-label="시스템 구조">
-              <div class="arch-node">USB Camera</div>
-              <div class="arch-node">OpenCV Vision</div>
-              <div class="arch-node">Center / Distance Logic</div>
-              <div class="arch-node">Arduino Serial</div>
-              <div class="arch-node">Servo Shooting</div>
-            </div>
-            <p class="arrow-note">
-              카메라 입력 → 골대 후보 검출 → 중심 좌표 안정화 → 조건 충족 시 Arduino로 Shoot 명령 전송
-            </p>
-          </div>
-
-          <div class="grid-2" style="margin-top: 24px;">
-            <div class="story-box">
-              <h3>Engineering Challenges</h3>
-              <ul class="challenge-list">
-                <li><b>Challenge 1.</b> YOLOv5 사용 시 프레임 저하와 실시간성 부족</li>
-                <li><b>Challenge 2.</b> 조명 변화에 따른 골대 오검출</li>
-                <li><b>Challenge 3.</b> 중심 좌표가 흔들릴 때 슈팅 트리거가 불안정해지는 문제</li>
-              </ul>
-            </div>
-            <div class="story-box">
-              <h3>Result & Lesson</h3>
-              <p>
-                실시간 시스템에서는 가장 고성능의 알고리즘보다 하드웨어 환경에 맞는 알고리즘 선택이 중요하다는 점을 배웠습니다.
-                또한 센서 입력, 비전 결과, 모터 동작 사이의 연결 구조를 설계하며 시스템 통합 관점의 중요성을 경험했습니다.
-              </p>
-            </div>
-          </div>
-        </article>
-
-        <!-- Mountain Robot Project -->
-        <article id="mountain" class="project-detail">
-          <div class="project-heading">
-            <div>
-              <div class="eyebrow">Project 02</div>
-              <h2>Autonomous Mountain Detection Robot</h2>
-              <p class="lead">
-                산악 지형의 불규칙한 환경에서 탐지와 맵핑을 수행하기 위한 구조로봇 콘셉트 설계 프로젝트입니다.
-              </p>
-            </div>
-            <a class="btn btn-primary" href="#projects">Back to Projects</a>
-          </div>
-
-          <div class="project-info">
-            <div class="info-item"><span>Focus</span><b>Rescue / Detection</b></div>
-            <div class="info-item"><span>Sensor</span><b>LiDAR / Depth / Thermal</b></div>
-            <div class="info-item"><span>Role</span><b>Concept / Mechanical Design</b></div>
-            <div class="info-item"><span>Status</span><b>Prototype Planning</b></div>
-          </div>
-
-          <div class="story-grid" style="margin-top: 28px;">
-            <div class="story-box">
-              <h3>Context</h3>
-              <p>
-                산악 환경은 평지나 실내와 달리 지형의 경사, 장애물, 시야 차단, GPS 불안정성 등으로 인해
-                단순 주행 로봇보다 복합적인 센서 구성과 구조 안정성이 필요합니다.
-              </p>
-              <p>
-                이 프로젝트는 LiDAR 기반 맵핑과 AI Depth Camera, 열화상 카메라를 결합해
-                탐지 로봇의 시스템 구성을 설계하는 것을 목표로 했습니다.
-              </p>
-            </div>
-            <div class="media-placeholder">
-              <div>
-                <strong>3D Model / Concept Render</strong><br />
-                산악 로봇 CAD 렌더링, 센서 배치도, 주행 구조 이미지를 넣는 영역
-              </div>
-            </div>
-          </div>
-
-          <div class="story-box" style="margin-top: 24px;">
-            <h3>System Concept</h3>
-            <div class="architecture">
-              <div class="arch-node">Rugged Frame</div>
-              <div class="arch-node">LiDAR Mapping</div>
-              <div class="arch-node">Depth Camera</div>
-              <div class="arch-node">Thermal Camera</div>
-              <div class="arch-node">Detection Logic</div>
-            </div>
-          </div>
-        </article>
-
-        <!-- ROS Project -->
-        <article id="ros" class="project-detail">
-          <div class="project-heading">
-            <div>
-              <div class="eyebrow">Project 03</div>
-              <h2>Custom ROS2 Mapping Robot</h2>
-              <p class="lead">
-                상용 TurtleBot 구조를 참고하되, 직접 구성한 모터·LiDAR·전원 시스템을 ROS2와 연결한 맵핑 로봇 프로젝트입니다.
-              </p>
-            </div>
-            <a class="btn btn-primary" href="#projects">Back to Projects</a>
-          </div>
-
-          <div class="grid-2">
-            <div class="story-box">
-              <h3>Project Story</h3>
-              <p>
-                목표는 단순히 LiDAR를 연결하는 것이 아니라, 실제 주행 플랫폼에서 키보드 제어 명령을 받고,
-                이를 시리얼 통신을 통해 Arduino 모터 제어로 전달하며, RViz에서 맵핑 결과를 확인하는 구조를 만드는 것이었습니다.
-              </p>
-            </div>
-            <div class="media-placeholder">
-              <div>
-                <strong>RViz Screenshot / Robot Photo</strong><br />
-                맵핑 결과 캡처, 주행 플랫폼 사진, 노드 구조도를 넣으면 좋습니다.
-              </div>
-            </div>
-          </div>
-
-          <div class="story-box" style="margin-top: 24px;">
-            <h3>Data Flow</h3>
-            <div class="architecture">
-              <div class="arch-node">Keyboard Teleop</div>
-              <div class="arch-node">cmd_vel</div>
-              <div class="arch-node">C++ Node</div>
-              <div class="arch-node">Arduino PID</div>
-              <div class="arch-node">Motor Drive</div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- =========================
+<div id="projectDetails"></div></div>
+</section>
+<!-- =========================
          Other Projects
          ========================= -->
-    <section class="section">
-      <div class="container">
-        <div class="section-title">
-          <div class="eyebrow">Other Projects</div>
-          <h2>추가 프로젝트</h2>
-        </div>
-
-        <div class="grid-3">
-          <article class="card">
-            <h3>Line-Tracing Robot Vacuum</h3>
-            <p>
-              TCS34725 컬러센서와 I2C 멀티플렉서를 활용해 다중 색상 라인을 인식하고,
-              라인트레이싱과 U턴 동작을 수행하는 청소 로봇 구조를 구현했습니다.
-            </p>
-            <div class="project-meta">
-              <span class="tag">Arduino Mega</span>
-              <span class="tag">TCS34725</span>
-              <span class="tag">PID</span>
-            </div>
-          </article>
-
-          <article class="card">
-            <h3>Photoacoustic Gas Sensor Research</h3>
-            <p>
-              VOCs ppb 단위 검출을 목표로 PAS 센서 구조와 Lock-in Amplifier 기반 신호 처리 구조를 연구했습니다.
-            </p>
-            <div class="project-meta">
-              <span class="tag">PAS</span>
-              <span class="tag">LIA</span>
-              <span class="tag">Sensor</span>
-            </div>
-          </article>
-
-          <article class="card">
-            <h3>Delta 3D Printer Build</h3>
-            <p>
-              Klipper 기반 델타 3D 프린터 구성을 위해 보드, 스텝 드라이버, 베드 구조, 전원 시스템을 검토하고 설계했습니다.
-            </p>
-            <div class="project-meta">
-              <span class="tag">Klipper</span>
-              <span class="tag">MKS</span>
-              <span class="tag">Mechanical Build</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================
+<section class="section">
+<div class="container">
+<div class="section-title">
+<div class="eyebrow">Other Projects</div>
+<h2>추가 프로젝트</h2>
+</div>
+<div class="grid-3" id="otherProjects"></div>
+</div>
+</section>
+<!-- =========================
          3D Viewer Placeholder
          ========================= -->
-    <section class="section">
-      <div class="container">
-        <div class="section-title">
-          <div class="eyebrow">3D Portfolio Area</div>
-          <h2>3D 뷰어를 넣기 전, 정적 HTML에서 보여줄 수 있는 형태</h2>
-          <p class="lead">
+<section class="section">
+<div class="container">
+<div class="section-title">
+<div class="eyebrow">3D Portfolio Area</div>
+<h2>3D 뷰어를 넣기 전, 정적 HTML에서 보여줄 수 있는 형태</h2>
+<p class="lead">
             현재 버전은 JavaScript를 제외했기 때문에 실제 3D 회전 뷰어는 넣지 않았습니다.
             대신 CAD 렌더링 이미지, 분해도, 정면/측면/등각 뷰를 카드 형태로 배치할 수 있습니다.
           </p>
-        </div>
-
-        <div class="grid-3">
-          <div class="media-placeholder">Front View Render</div>
-          <div class="media-placeholder">Exploded View</div>
-          <div class="media-placeholder">Mechanism Detail</div>
-        </div>
-
-        <div class="card" style="margin-top: 24px;">
-          <h3>나중에 3D Viewer를 추가할 위치</h3>
-          <p>
+</div>
+<div class="grid-3">
+<div class="media-placeholder">Front View Render</div>
+<div class="media-placeholder">Exploded View</div>
+<div class="media-placeholder">Mechanism Detail</div>
+</div>
+<div class="card mt-24">
+<h3>나중에 3D Viewer를 추가할 위치</h3>
+<p>
             추후 JavaScript를 허용하면 Google의 model-viewer 또는 Three.js를 이용해 GLB 모델을 회전 가능한 3D 뷰어로 넣을 수 있습니다.
             현재는 채용 담당자가 빠르게 확인할 수 있도록 정적인 CAD 이미지 중심 구성을 권장합니다.
           </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================
+</div>
+</div>
+</section>
+<!-- =========================
          Skills
          ========================= -->
-    <section id="skills" class="section">
-      <div class="container">
-        <div class="section-title">
-          <div class="eyebrow">Skills</div>
-          <h2>사용 기술 및 도구</h2>
-          <p class="lead">
-            숙련도는 과장된 “상·중·하”가 아니라, 프로젝트에서 실제로 사용했고 면접에서 설명 가능한 범위를 기준으로 표시했습니다.
+<section class="section" id="skills">
+<div class="container">
+<div class="section-title">
+<div class="eyebrow">Skills</div>
+<h2>사용 기술 및 도구</h2>
+<p class="lead">
+            숙련도는 과장된 &ldquo;상&middot;중&middot;하&rdquo;가 아니라, 프로젝트에서 실제로 사용했고 면접에서 설명 가능한 범위를 기준으로 표시했습니다.
           </p>
-        </div>
-
-        <div class="skill-scale compact-scale">
-          <article class="scale-card">
-            <div class="scale-mark">■ □ □</div>
-            <h3>Familiar</h3>
-            <p>참고 자료 기반으로 이해·수정 가능</p>
-          </article>
-          <article class="scale-card">
-            <div class="scale-mark">■ ■ □</div>
-            <h3>Applied</h3>
-            <p>프로젝트에 직접 적용하고 설명 가능</p>
-          </article>
-          <article class="scale-card">
-            <div class="scale-mark">■ ■ ■</div>
-            <h3>Core</h3>
-            <p>핵심 구현·구조 선택·한계 설명 가능</p>
-          </article>
-        </div>
-
-        <div class="skill-category-grid">
-          <article class="card skill-group">
-            <h3>Mechanical / CAD</h3>
-            <div class="skill-table">
-              <div class="skill-item">
-                <div class="skill-name">Inventor</div>
-                <div>
-                  <div class="skill-meter level-2" aria-label="Applied level"><span></span><span></span><span></span></div>
-                  <span class="skill-level-text">Applied</span>
-                </div>
-                <p class="skill-note">로봇 구조물, 링크, 브라켓, 조립 구조 설계 및 GLB 추출용 모델 정리.</p>
-              </div>
-              <div class="skill-item">
-                <div class="skill-name">AutoCAD</div>
-                <div>
-                  <div class="skill-meter level-1" aria-label="Familiar level"><span></span><span></span><span></span></div>
-                  <span class="skill-level-text">Familiar</span>
-                </div>
-                <p class="skill-note">2D 도면 확인, 치수 정리, 간단한 형상 수정 중심으로 사용.</p>
-              </div>
-              <div class="skill-item">
-                <div class="skill-name">3D Modeling</div>
-                <div>
-                  <div class="skill-meter level-2" aria-label="Applied level"><span></span><span></span><span></span></div>
-                  <span class="skill-level-text">Applied</span>
-                </div>
-                <p class="skill-note">제작 가능한 구조를 고려한 모델링, 부품 배치, 간섭 검토 경험.</p>
-              </div>
-              <div class="skill-item">
-                <div class="skill-name">Mechanism Design</div>
-                <div>
-                  <div class="skill-meter level-2" aria-label="Applied level"><span></span><span></span><span></span></div>
-                  <span class="skill-level-text">Applied</span>
-                </div>
-                <p class="skill-note">서보 링크 구조, 슈팅 메커니즘, 센서 마운트 등 로봇 기구 설계 중심.</p>
-              </div>
-            </div>
-          </article>
-
-          <article class="card skill-group">
-            <h3>Robotics / Embedded</h3>
-            <div class="skill-table">
-              <div class="skill-item">
-                <div class="skill-name">Arduino</div>
-                <div>
-                  <div class="skill-meter level-3" aria-label="Core level"><span></span><span></span><span></span></div>
-                  <span class="skill-level-text">Core</span>
-                </div>
-                <p class="skill-note">센서 입력, 모터 제어, 릴레이, 시리얼 통신, millis 기반 비차단 로직 구현.</p>
-              </div>
-              <div class="skill-item">
-                <div class="skill-name">Servo Control</div>
-                <div>
-                  <div class="skill-meter level-2" aria-label="Applied level"><span></span><span></span><span></span></div>
-                  <span class="skill-level-text">Applied</span>
-                </div>
-                <p class="skill-note">PCA9685 기반 다중 서보 제어 및 슈팅/정렬 동작 구현 경험.</p>
-              </div>
-              <div class="skill-item">
-                <div class="skill-name">Encoder Motor</div>
-                <div>
-                  <div class="skill-meter level-2" aria-label="Applied level"><span></span><span></span><span></span></div>
-                  <span class="skill-level-text">Applied</span>
-                </div>
-                <p class="skill-note">엔코더 모터 연결, 속도 피드백, PID 제어 구조 구성 경험.</p>
-              </div>
-              <div class="skill-item">
-                <div class="skill-name">Serial Communication</div>
-                <div>
-                  <div class="skill-meter level-2" aria-label="Applied level"><span></span><span></span><span></span></div>
-                  <span class="skill-level-text">Applied</span>
-                </div>
-                <p class="skill-note">Raspberry Pi/PC와 Arduino 간 명령 전달, Shoot 트리거, cmd_vel 전달 구조 구현.</p>
-              </div>
-            </div>
-          </article>
-
-          <article class="card skill-group">
-            <h3>Software / Vision / ROS</h3>
-            <div class="skill-table">
-              <div class="skill-item">
-                <div class="skill-name">Python</div>
-                <div>
-                  <div class="skill-meter level-2" aria-label="Applied level"><span></span><span></span><span></span></div>
-                  <span class="skill-level-text">Applied</span>
-                </div>
-                <p class="skill-note">OpenCV 처리, 카메라 입력, 조건 판단, 시리얼 연동 중심의 프로젝트 코드 작성.</p>
-              </div>
-              <div class="skill-item">
-                <div class="skill-name">OpenCV</div>
-                <div>
-                  <div class="skill-meter level-2" aria-label="Applied level"><span></span><span></span><span></span></div>
-                  <span class="skill-level-text">Applied</span>
-                </div>
-                <p class="skill-note">HSV, Canny, contour, 사각형 후보 검출, 중심 좌표 안정화 로직 구현.</p>
-              </div>
-              <div class="skill-item">
-                <div class="skill-name">YOLOv5</div>
-                <div>
-                  <div class="skill-meter level-1" aria-label="Familiar level"><span></span><span></span><span></span></div>
-                  <span class="skill-level-text">Familiar</span>
-                </div>
-                <p class="skill-note">커스텀 데이터 학습과 추론 테스트 경험. 임베디드 성능 한계를 분석한 경험 중심.</p>
-              </div>
-              <div class="skill-item">
-                <div class="skill-name">ROS2 / RViz</div>
-                <div>
-                  <div class="skill-meter level-1" aria-label="Familiar level"><span></span><span></span><span></span></div>
-                  <span class="skill-level-text">Familiar</span>
-                </div>
-                <p class="skill-note">LiDAR 맵핑, RViz 시각화, cmd_vel 흐름 이해 및 커스텀 플랫폼 연동 학습.</p>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================
+</div>
+<div class="skill-scale compact-scale">
+<article class="scale-card">
+<div class="scale-mark">■ &square; &square;</div>
+<h3>Familiar</h3>
+<p>참고 자료 기반으로 이해&middot;수정 가능</p>
+</article>
+<article class="scale-card">
+<div class="scale-mark">■ ■ &square;</div>
+<h3>Applied</h3>
+<p>프로젝트에 직접 적용하고 설명 가능</p>
+</article>
+<article class="scale-card">
+<div class="scale-mark">■ ■ ■</div>
+<h3>Core</h3>
+<p>핵심 구현&middot;구조 선택&middot;한계 설명 가능</p>
+</article>
+</div>
+<div class="skill-category-grid">
+<article class="card skill-group">
+<h3>Mechanical / CAD</h3>
+<div class="skill-table">
+<div class="skill-item">
+<div class="skill-name">Inventor</div>
+<div>
+<div aria-label="Applied level" class="skill-meter level-2"><span></span><span></span><span></span>
+</div>
+<span class="skill-level-text">Applied</span>
+</div>
+<p class="skill-note">로봇 구조물, 링크, 브라켓, 조립 구조 설계 및 GLB 추출용 모델 정리.</p>
+</div>
+<div class="skill-item">
+<div class="skill-name">AutoCAD</div>
+<div>
+<div aria-label="Familiar level" class="skill-meter level-1"><span></span><span></span><span></span>
+</div>
+<span class="skill-level-text">Familiar</span>
+</div>
+<p class="skill-note">2D 도면 확인, 치수 정리, 간단한 형상 수정 중심으로 사용.</p>
+</div>
+<div class="skill-item">
+<div class="skill-name">3D Modeling</div>
+<div>
+<div aria-label="Applied level" class="skill-meter level-2"><span></span><span></span><span></span>
+</div>
+<span class="skill-level-text">Applied</span>
+</div>
+<p class="skill-note">제작 가능한 구조를 고려한 모델링, 부품 배치, 간섭 검토 경험.</p>
+</div>
+<div class="skill-item">
+<div class="skill-name">Mechanism Design</div>
+<div>
+<div aria-label="Applied level" class="skill-meter level-2"><span></span><span></span><span></span>
+</div>
+<span class="skill-level-text">Applied</span>
+</div>
+<p class="skill-note">서보 링크 구조, 슈팅 메커니즘, 센서 마운트 등 로봇 기구 설계 중심.</p>
+</div>
+</div>
+</article>
+<article class="card skill-group">
+<h3>Robotics / Embedded</h3>
+<div class="skill-table">
+<div class="skill-item">
+<div class="skill-name">Arduino</div>
+<div>
+<div aria-label="Core level" class="skill-meter level-3"><span></span><span></span><span></span></div>
+<span class="skill-level-text">Core</span>
+</div>
+<p class="skill-note">센서 입력, 모터 제어, 릴레이, 시리얼 통신, millis 기반 비차단 로직 구현.</p>
+</div>
+<div class="skill-item">
+<div class="skill-name">Servo Control</div>
+<div>
+<div aria-label="Applied level" class="skill-meter level-2"><span></span><span></span><span></span>
+</div>
+<span class="skill-level-text">Applied</span>
+</div>
+<p class="skill-note">PCA9685 기반 다중 서보 제어 및 슈팅/정렬 동작 구현 경험.</p>
+</div>
+<div class="skill-item">
+<div class="skill-name">Encoder Motor</div>
+<div>
+<div aria-label="Applied level" class="skill-meter level-2"><span></span><span></span><span></span>
+</div>
+<span class="skill-level-text">Applied</span>
+</div>
+<p class="skill-note">엔코더 모터 연결, 속도 피드백, PID 제어 구조 구성 경험.</p>
+</div>
+<div class="skill-item">
+<div class="skill-name">Serial Communication</div>
+<div>
+<div aria-label="Applied level" class="skill-meter level-2"><span></span><span></span><span></span>
+</div>
+<span class="skill-level-text">Applied</span>
+</div>
+<p class="skill-note">Raspberry Pi/PC와 Arduino 간 명령 전달, Shoot 트리거, cmd_vel 전달 구조 구현.</p>
+</div>
+</div>
+</article>
+<article class="card skill-group">
+<h3>Software / Vision / ROS</h3>
+<div class="skill-table">
+<div class="skill-item">
+<div class="skill-name">Python</div>
+<div>
+<div aria-label="Applied level" class="skill-meter level-2"><span></span><span></span><span></span>
+</div>
+<span class="skill-level-text">Applied</span>
+</div>
+<p class="skill-note">OpenCV 처리, 카메라 입력, 조건 판단, 시리얼 연동 중심의 프로젝트 코드 작성.</p>
+</div>
+<div class="skill-item">
+<div class="skill-name">OpenCV</div>
+<div>
+<div aria-label="Applied level" class="skill-meter level-2"><span></span><span></span><span></span>
+</div>
+<span class="skill-level-text">Applied</span>
+</div>
+<p class="skill-note">HSV, Canny, contour, 사각형 후보 검출, 중심 좌표 안정화 로직 구현.</p>
+</div>
+<div class="skill-item">
+<div class="skill-name">YOLOv5</div>
+<div>
+<div aria-label="Familiar level" class="skill-meter level-1"><span></span><span></span><span></span>
+</div>
+<span class="skill-level-text">Familiar</span>
+</div>
+<p class="skill-note">커스텀 데이터 학습과 추론 테스트 경험. 임베디드 성능 한계를 분석한 경험 중심.</p>
+</div>
+<div class="skill-item">
+<div class="skill-name">ROS2 / RViz</div>
+<div>
+<div aria-label="Familiar level" class="skill-meter level-1"><span></span><span></span><span></span>
+</div>
+<span class="skill-level-text">Familiar</span>
+</div>
+<p class="skill-note">LiDAR 맵핑, RViz 시각화, cmd_vel 흐름 이해 및 커스텀 플랫폼 연동 학습.</p>
+</div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- =========================
          Experience
          ========================= -->
-    <section id="experience" class="section">
-      <div class="container">
-        <div class="section-title">
-          <div class="eyebrow">Experience</div>
-          <h2>연구 및 프로젝트 경험</h2>
-        </div>
-
-        <div class="timeline">
-          <article class="timeline-item">
-            <div class="timeline-date">2022.06 - 2025.07</div>
-            <div>
-              <h3>Undergraduate Research Assistant</h3>
-              <p>
+<section class="section" id="experience">
+<div class="container">
+<div class="section-title">
+<div class="eyebrow">Experience</div>
+<h2>연구 및 프로젝트 경험</h2>
+</div>
+<div class="timeline">
+<article class="timeline-item">
+<div class="timeline-date">2022.06 - 2025.07</div>
+<div>
+<h3>Undergraduate Research Assistant</h3>
+<p>
                 VOCs ppb 단위 감지를 위한 Photoacoustic Gas Sensor 구조 및 신호 처리 회로 연구에 참여했습니다.
                 PAS 센서 구조, Lock-in Amplifier, 위상 조절 및 필터링 구조를 중심으로 학습하고 실험했습니다.
               </p>
-            </div>
-          </article>
-
-          <article class="timeline-item">
-            <div class="timeline-date">2024 - 2025</div>
-            <div>
-              <h3>Capstone Design Project</h3>
-              <p>
+</div>
+</article>
+<article class="timeline-item">
+<div class="timeline-date">2024 - 2025</div>
+<div>
+<h3>Capstone Design Project</h3>
+<p>
                 농구 골대 인식과 슈팅 메커니즘을 결합한 농구 슈팅 로봇을 설계하고 제작했습니다.
                 비전 인식, Arduino 제어, 서보 구동, 기구 설계를 통합했습니다.
               </p>
-            </div>
-          </article>
-
-          <article class="timeline-item">
-            <div class="timeline-date">2025 - 2026</div>
-            <div>
-              <h3>Autonomous Robot / Mapping Project</h3>
-              <p>
+</div>
+</article>
+<article class="timeline-item">
+<div class="timeline-date">2025 - 2026</div>
+<div>
+<h3>Autonomous Robot / Mapping Project</h3>
+<p>
                 LiDAR와 ROS2 기반 맵핑, 엔코더 모터 제어, 시리얼 통신 구조를 활용한 자율주행 로봇 플랫폼을 구성했습니다.
               </p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- =========================
          Contact
          ========================= -->
-    <section id="contact" class="section">
-      <div class="container">
-        <div class="card">
-          <div class="section-title" style="margin-bottom: 18px;">
-            <div class="eyebrow">Contact</div>
-            <h2>함께 문제를 해결하는 로봇 엔지니어로 성장하겠습니다.</h2>
-          </div>
-          <p class="lead">
+<section class="section" id="contact">
+<div class="container">
+<div class="card">
+<div class="section-title tight">
+<div class="eyebrow">Contact</div>
+<h2>함께 문제를 해결하는 로봇 엔지니어로 성장하겠습니다.</h2>
+</div>
+<p class="lead">
             프로젝트 자료, 시연 영상, CAD 이미지, 코드 설명은 요청 시 추가로 공유할 수 있습니다.
           </p>
-          <div class="pill-row">
-            <span class="pill">Email: samkil@gmail.com</span>
-            <span class="pill">Location: Korea</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+<div class="pill-row">
+<span class="pill">Email: your-email@example.com</span>
+<span class="pill">Location: Korea</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<div class="container">
+<p>&copy; 2026 Jongheon Kil. Robotics Engineering Portfolio.</p>
+</div>
+</footer>
 
-  <footer>
-    <div class="container">
-      <p>© 2026 Proto Kil. Robotics Engineering Portfolio.</p>
-    </div>
-  </footer>
-  <script>
-    /*
-      Portfolio JS
-      1. 라이트/다크 모드 저장
-      2. 모바일 메뉴 자동 닫기
-      3. 현재 섹션 네비게이션 강조
-      4. 스크롤 진행 바
-      5. 맨 위로 버튼
-      6. 프로젝트 필터
-    */
-
-    const themeToggle = document.querySelector('#theme-toggle');
-    const navToggle = document.querySelector('#nav-toggle');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    const sections = document.querySelectorAll('section[id]');
-    const scrollProgress = document.querySelector('#scrollProgress');
-    const backToTop = document.querySelector('#backToTop');
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card[data-category]');
-
-    // 1. 라이트/다크 모드 저장
-    function applyTheme() {
-      const isLight = themeToggle.checked;
-      document.body.classList.toggle('light-mode', isLight);
-      localStorage.setItem('portfolio-theme', isLight ? 'light' : 'dark');
-    }
-
-    const savedTheme = localStorage.getItem('portfolio-theme');
-    if (savedTheme === null) {
-      themeToggle.checked = true;
-    } else if (savedTheme === 'light') {
-      themeToggle.checked = true;
-    } else {
-      themeToggle.checked = false;
-    }
-    applyTheme();
-
-    themeToggle.addEventListener('change', applyTheme);
-
-    // 2. 모바일 메뉴에서 항목 클릭 시 메뉴 닫기
-    navLinks.forEach((link) => {
-      link.addEventListener('click', () => {
-        navToggle.checked = false;
-      });
-    });
-
-    // 3, 4, 5. 스크롤 기반 UI 업데이트
-    function updateScrollUI() {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      scrollProgress.style.width = `${progress}%`;
-
-      if (scrollTop > 520) {
-        backToTop.classList.add('is-visible');
-      } else {
-        backToTop.classList.remove('is-visible');
-      }
-
-      let currentSectionId = '';
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 120;
-        if (scrollTop >= sectionTop) {
-          currentSectionId = section.getAttribute('id');
-        }
-      });
-
-      navLinks.forEach((link) => {
-        const href = link.getAttribute('href');
-        link.classList.toggle('is-active', href === `#${currentSectionId}`);
-      });
-    }
-
-    window.addEventListener('scroll', updateScrollUI);
-    window.addEventListener('load', updateScrollUI);
-
-    // 6. 프로젝트 필터
-    filterButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const filter = button.dataset.filter;
-
-        filterButtons.forEach((btn) => btn.classList.remove('is-active'));
-        button.classList.add('is-active');
-
-        projectCards.forEach((card) => {
-          const categories = card.dataset.category.split(' ');
-          const shouldShow = filter === 'all' || categories.includes(filter);
-          card.classList.toggle('is-hidden', !shouldShow);
-        });
-      });
-    });
-  </script>
+<script src="scripts/projects.js"></script>
+<script src="scripts/main.js"></script>
 </body>
 </html>
