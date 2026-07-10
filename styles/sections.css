@@ -1,0 +1,428 @@
+    /* =========================
+       2. 상단 네비게이션
+       ========================= */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(18px);
+      background: color-mix(in srgb, var(--bg) 76%, transparent);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 66px;
+      gap: 20px;
+    }
+
+    .site-header .container.nav {
+      width: calc(100% - 32px);
+      max-width: none;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: 0;
+      z-index: 110;
+    }
+
+    .logo span {
+      color: var(--accent-2);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 110;
+    }
+
+    .nav-toggle {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .nav-button {
+      display: none;
+    }
+
+    /* =========================
+       3. 히어로 영역
+       ========================= */
+    .hero {
+      min-height: calc(92svh - 66px);
+      display: grid;
+      align-items: center;
+      padding: 56px 0 28px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero-copy {
+      display: grid;
+      align-content: center;
+    }
+
+    .hero-copy .lead {
+      margin-bottom: 0;
+    }
+
+    .hero-proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 20px;
+      max-width: 820px;
+    }
+
+    .hero-proof {
+      min-width: 0;
+      display: grid;
+      gap: 4px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025)),
+        rgba(255, 255, 255, 0.035);
+      transition: border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
+    }
+
+    .hero-proof:hover {
+      border-color: rgba(6, 182, 212, 0.58);
+      transform: translateY(-2px);
+      background:
+        linear-gradient(180deg, rgba(6, 182, 212, 0.12), rgba(255, 255, 255, 0.03)),
+        rgba(255, 255, 255, 0.035);
+    }
+
+    .hero-proof span,
+    .snapshot-item span {
+      color: var(--accent-2);
+      font-size: 0.72rem;
+      font-weight: 850;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .hero-proof b,
+    .snapshot-item b {
+      color: white;
+      font-size: 0.96rem;
+      line-height: 1.25;
+    }
+
+    .hero-proof em {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.38;
+      font-style: normal;
+    }
+
+    .hero-card {
+      position: relative;
+      min-height: auto;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border-radius: 24px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+        var(--card);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 0;
+    }
+
+    .floating-spec {
+      position: static;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding: 18px;
+    }
+
+    .hero-visual-placeholder {
+      height: 100%;
+      min-height: 520px;
+      display: grid;
+      place-items: top;
+      padding: 5px;
+      text-align: bottom;
+      background:
+        linear-gradient(135deg, rgba(59, 130, 246, 0.22), transparent),
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 16px);
+    }
+
+    .hero-visual-placeholder strong {
+      display: block;
+      font-size: 1.55rem;
+      margin-bottom: 8px;
+    }
+
+    .spec-box {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(15, 17, 21, 0.72);
+      backdrop-filter: blur(16px);
+    }
+
+    .spec-box b {
+      display: block;
+      font-size: 1.2rem;
+    }
+
+    .spec-box span {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .portfolio-snapshot {
+      padding: 18px 0 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    .snapshot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .snapshot-item {
+      display: grid;
+      gap: 4px;
+      padding: 15px 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .snapshot-item:hover {
+      border-color: rgba(6, 182, 212, 0.5);
+    }
+
+    .hero-proof-grid,
+    .hero .pill-row,
+    .snapshot-grid,
+    .project-filter {
+      scrollbar-width: none;
+    }
+
+    .hero-proof-grid::-webkit-scrollbar,
+    .hero .pill-row::-webkit-scrollbar,
+    .snapshot-grid::-webkit-scrollbar,
+    .project-filter::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* =========================
+       6. 타임라인 / 스킬
+       ========================= */
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 18px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .timeline-date {
+      color: var(--accent-2);
+      font-weight: 800;
+    }
+
+    .skill-group {
+      display: grid;
+      gap: 14px;
+    }
+
+    .skill-group h3 {
+      margin-bottom: 0;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-scale {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .skill-category-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+
+    .scale-card {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .compact-scale .scale-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-areas:
+        "mark title"
+        "mark desc";
+      column-gap: 13px;
+      align-items: center;
+    }
+
+    .compact-scale .scale-mark {
+      grid-area: mark;
+      margin-bottom: 0;
+    }
+
+    .compact-scale h3 {
+      grid-area: title;
+      margin-bottom: 2px;
+      font-size: 1rem;
+    }
+
+    .compact-scale p {
+      grid-area: desc;
+      margin: 0;
+      font-size: 0.86rem;
+    }
+
+    .scale-mark {
+      display: inline-flex;
+      gap: 5px;
+      margin-bottom: 10px;
+      font-family: var(--font-mono);
+      color: var(--accent-2);
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .skill-table {
+      display: grid;
+      gap: 12px;
+    }
+
+    .skill-item {
+      display: grid;
+      grid-template-columns: minmax(150px, 0.8fr) minmax(100px, auto) 2fr;
+      gap: 16px;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .skill-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .skill-name {
+      font-weight: 850;
+      color: var(--text);
+    }
+
+    .skill-note {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .skill-meter {
+      display: inline-flex;
+      gap: 5px;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    .skill-meter span {
+      width: 26px;
+      height: 7px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.055);
+    }
+
+    .skill-meter.level-1 span:nth-child(1),
+    .skill-meter.level-2 span:nth-child(-n+2),
+    .skill-meter.level-3 span:nth-child(-n+3) {
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    }
+
+    .skill-level-text {
+      display: block;
+      margin-top: 5px;
+      font-size: 0.74rem;
+      color: var(--muted);
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       Utility
+       ========================= */
+    .mt-18 { margin-top: 18px; }
+    .mt-24 { margin-top: 24px; }
+    .mt-28 { margin-top: 28px; }
+    .section-title.tight { margin-bottom: 18px; }
+
+    /* =========================
+       7. 푸터
+       ========================= */
+    footer {
+      padding: 46px 0 70px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+

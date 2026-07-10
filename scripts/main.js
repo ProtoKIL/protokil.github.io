@@ -15,15 +15,14 @@ function renderProjectCards() {
         : `<div class="project-thumb">${project.title} Image / Render</div>`;
 
       return `
-        <article class="card project-card" data-category="${category}">
+        <a class="card project-card" data-category="${category}" href="#${project.id}" aria-label="${project.title} 상세 보기">
           ${thumb}
           <div class="project-body">
             <h3>${project.title}</h3>
             <p>${project.summary}</p>
             <div class="project-meta">${renderTagList(project.tags)}</div>
-            <a class="btn btn-secondary" href="#${project.id}">Read Case Study</a>
           </div>
-        </article>
+        </a>
       `;
     })
     .join("");
@@ -58,13 +57,17 @@ function renderProjectMedia(project) {
     `;
   }
 
-  if (project.mediaPlaceholder) {
+  if (project.mediaPlaceholders && project.mediaPlaceholders.length) {
     return `
-      <div class="media-placeholder">
-        <div>
-          <strong>${project.mediaPlaceholder.title}</strong><br />
-          ${project.mediaPlaceholder.text}
-        </div>
+      <div class="grid-2">
+        ${project.mediaPlaceholders.map((placeholder) => `
+          <div class="media-placeholder">
+            <div>
+              <strong>${placeholder.title}</strong><br />
+              ${placeholder.text}
+            </div>
+          </div>
+        `).join("")}
       </div>
     `;
   }
@@ -78,54 +81,13 @@ function renderProjectDetails() {
 
   target.innerHTML = portfolioProjects
     .map((project) => {
-      const info = project.info
-        ? `
-          <div class="project-info">
-            ${project.info.map((item) => `<div class="info-item"><span>${item.label}</span><b>${item.value}</b></div>`).join("")}
-          </div>
-        `
-        : "";
-
+      const info = `
+        <div class="project-info">
+          ${project.info.map((item) => `<div class="info-item"><span>${item.label}</span><b>${item.value}</b></div>`).join("")}
+        </div>
+      `;
       const storyParagraphs = project.story.map((paragraph) => `<p>${paragraph}</p>`).join("");
       const media = renderProjectMedia(project);
-
-      const problemApproach = project.problem || project.approach
-        ? `
-          <div class="grid-2 mt-24">
-            ${project.problem ? `<div class="story-box"><h3>Problem</h3><p>${project.problem}</p></div>` : ""}
-            ${project.approach ? `<div class="story-box"><h3>Approach</h3><p>${project.approach}</p></div>` : ""}
-          </div>
-        `
-        : "";
-
-      const architecture = project.architecture
-        ? `
-          <div class="story-box mt-24">
-            <h3>${project.id === "ros" ? "Data Flow" : project.id === "mountain" ? "System Concept" : "System Architecture"}</h3>
-            <div class="architecture" aria-label="시스템 구조">
-              ${project.architecture.map((node) => `<div class="arch-node">${node}</div>`).join("")}
-            </div>
-            ${project.architectureNote ? `<p class="arrow-note">${project.architectureNote}</p>` : ""}
-          </div>
-        `
-        : "";
-
-      const challenges = project.challenges
-        ? `
-          <div class="grid-2 mt-24">
-            <div class="story-box">
-              <h3>Engineering Challenges</h3>
-              <ul class="challenge-list">
-                ${project.challenges.map((challenge, index) => `<li><b>Challenge ${index + 1}.</b> ${challenge}</li>`).join("")}
-              </ul>
-            </div>
-            <div class="story-box">
-              <h3>Result & Lesson</h3>
-              <p>${project.resultLesson || ""}</p>
-            </div>
-          </div>
-        `
-        : "";
 
       return `
         <article id="${project.id}" class="project-detail">
@@ -140,13 +102,41 @@ function renderProjectDetails() {
 
           ${info}
 
-          <div class="story-grid mt-28">
-            ${project.id === "mountain" ? `<div class="story-box"><h3>Context</h3>${storyParagraphs}</div>${media}` : `${media}<div class="story-box"><h3>Project Story</h3>${storyParagraphs}</div>`}
+          <div class="story-box mt-28">
+            <h3>Project Story</h3>
+            ${storyParagraphs}
           </div>
 
-          ${problemApproach}
-          ${architecture}
-          ${challenges}
+          <div class="grid-2 mt-24">
+            <div class="story-box"><h3>Problem</h3><p>${project.problem}</p></div>
+            <div class="story-box"><h3>Approach</h3><p>${project.approach}</p></div>
+          </div>
+
+          <div class="story-box mt-24">
+            <h3>System Architecture</h3>
+            <div class="architecture" aria-label="${project.title} 시스템 구조">
+              ${project.architecture.map((node) => `<div class="arch-node">${node}</div>`).join("")}
+            </div>
+            <p class="arrow-note">${project.architectureNote}</p>
+          </div>
+
+          <div class="grid-2 mt-24">
+            <div class="story-box">
+              <h3>Engineering Challenges</h3>
+              <ul class="challenge-list">
+                ${project.challenges.map((challenge, index) => `<li><b>Challenge ${index + 1}.</b> ${challenge}</li>`).join("")}
+              </ul>
+            </div>
+            <div class="story-box">
+              <h3>Result & Lesson</h3>
+              <p>${project.resultLesson}</p>
+            </div>
+          </div>
+
+          <div class="mt-24">
+            <h3>Project Media</h3>
+            ${media}
+          </div>
         </article>
       `;
     })
@@ -157,13 +147,14 @@ function renderOtherProjects() {
   const target = document.querySelector("#otherProjects");
   if (!target) return;
 
-  target.innerHTML = otherProjects
+  target.innerHTML = portfolioProjects
+    .filter((project) => !project.featured)
     .map((project) => `
-      <article class="card">
+      <a class="card other-project-card" href="#${project.id}" aria-label="${project.title} 상세 보기">
         <h3>${project.title}</h3>
-        <p>${project.description}</p>
+        <p>${project.summary}</p>
         <div class="project-meta">${renderTagList(project.tags)}</div>
-      </article>
+      </a>
     `)
     .join("");
 }
