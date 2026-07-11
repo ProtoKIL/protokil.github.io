@@ -316,7 +316,7 @@
       border: 1px solid rgba(59, 130, 246, 0.26);
     }
 
-    .arch-node:not(:last-child)::after {
+    .architecture.has-flow .arch-node:not(:last-child)::after {
       content: "→";
       position: absolute;
       left: calc(100% + 7px);

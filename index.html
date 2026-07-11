@@ -12,7 +12,7 @@
   - assets/ 폴더에는 이미지와 영상을 넣습니다.
   =========================================================
 -->
-<link href="styles/main.css?v=20260712-3" rel="stylesheet"/>
+<link href="styles/main.css?v=20260712-5" rel="stylesheet"/>
 </head>
 <body>
 <div aria-hidden="true" class="scroll-progress" id="scrollProgress"></div>
@@ -134,7 +134,7 @@
 <div class="card-label">Profile Summary</div>
 <p>
               Proto.KIL은 한국교통대학교 기계공학과에서 기계 설계와 로봇 시스템 구현을 중심으로 프로젝트를 수행해왔습니다.
-              특히 농구 슈팅 로봇, LiDAR 기반 맵핑 로봇, 라인트레이싱 로봇, 센서 기반 연구 경험을 통해
+              특히 농구 슈팅 로봇, LiDAR 기반 매핑 로봇, 라인트레이싱 로봇, 센서 기반 연구 경험을 통해
               단순한 설계 결과물이 아니라 실제 환경에서 동작하는 시스템을 만드는 과정에 집중했습니다.
             </p>
 <p>
@@ -217,9 +217,9 @@
 </div>
 <div class="skill-scale compact-scale">
 <article class="scale-card">
-<div class="scale-mark">■ &square; &square;</div>
-<h3>Familiar</h3>
-<p>참고 자료 기반으로 이해&middot;수정 가능</p>
+<div class="scale-mark">■ ■ ■</div>
+<h3>Core</h3>
+<p>핵심 구현&middot;구조 선택&middot;한계 설명 가능</p>
 </article>
 <article class="scale-card">
 <div class="scale-mark">■ ■ &square;</div>
@@ -227,9 +227,9 @@
 <p>프로젝트에 직접 적용하고 설명 가능</p>
 </article>
 <article class="scale-card">
-<div class="scale-mark">■ ■ ■</div>
-<h3>Core</h3>
-<p>핵심 구현&middot;구조 선택&middot;한계 설명 가능</p>
+<div class="scale-mark">■ &square; &square;</div>
+<h3>Familiar</h3>
+<p>참고 자료 기반으로 이해&middot;수정 가능</p>
 </article>
 </div>
 <div class="skill-category-grid">
@@ -239,38 +239,20 @@
 <div class="skill-item">
 <div class="skill-name">Inventor</div>
 <div>
-<div aria-label="Applied level" class="skill-meter level-2"><span></span><span></span><span></span>
+<div aria-label="Core level" class="skill-meter level-3"><span></span><span></span><span></span>
 </div>
-<span class="skill-level-text">Applied</span>
+<span class="skill-level-text">Core</span>
 </div>
-<p class="skill-note">로봇 구조물, 링크, 브라켓, 조립 구조 설계 및 GLB 추출용 모델 정리.</p>
+<p class="skill-note">로봇과 장비의 전체 어셈블리, 부품 배치와 간섭 검토, 브라켓·툴헤드·센서 마운트 및 동작 메커니즘을 설계하고 실제 조립 결과를 반영해 반복 개선.</p>
 </div>
 <div class="skill-item">
 <div class="skill-name">AutoCAD</div>
 <div>
-<div aria-label="Familiar level" class="skill-meter level-1"><span></span><span></span><span></span>
-</div>
-<span class="skill-level-text">Familiar</span>
-</div>
-<p class="skill-note">2D 도면 확인, 치수 정리, 간단한 형상 수정 중심으로 사용.</p>
-</div>
-<div class="skill-item">
-<div class="skill-name">3D Modeling</div>
-<div>
 <div aria-label="Applied level" class="skill-meter level-2"><span></span><span></span><span></span>
 </div>
 <span class="skill-level-text">Applied</span>
 </div>
-<p class="skill-note">제작 가능한 구조를 고려한 모델링, 부품 배치, 간섭 검토 경험.</p>
-</div>
-<div class="skill-item">
-<div class="skill-name">Mechanism Design</div>
-<div>
-<div aria-label="Applied level" class="skill-meter level-2"><span></span><span></span><span></span>
-</div>
-<span class="skill-level-text">Applied</span>
-</div>
-<p class="skill-note">서보 링크 구조, 슈팅 메커니즘, 센서 마운트 등 로봇 기구 설계 중심.</p>
+<p class="skill-note">CNC 외주 제작을 위한 부품 도면을 작성하고, 치수와 가공 정보를 정리해 실제 제작으로 연결.</p>
 </div>
 </div>
 </article>
@@ -286,22 +268,31 @@
 <p class="skill-note">센서 입력, 모터 제어, 릴레이, 시리얼 통신, millis 기반 비차단 로직 구현.</p>
 </div>
 <div class="skill-item">
-<div class="skill-name">Servo Control</div>
+<div class="skill-name">System Integration</div>
 <div>
-<div aria-label="Applied level" class="skill-meter level-2"><span></span><span></span><span></span>
+<div aria-label="Core level" class="skill-meter level-3"><span></span><span></span><span></span>
 </div>
-<span class="skill-level-text">Applied</span>
+<span class="skill-level-text">Core</span>
 </div>
-<p class="skill-note">PCA9685 기반 다중 서보 제어 및 슈팅/정렬 동작 구현 경험.</p>
+<p class="skill-note">기구 구조, 전원, 센서, 제어 보드와 소프트웨어를 하나의 시스템으로 통합하고 조립·테스트 과정의 문제를 구분해 개선.</p>
 </div>
 <div class="skill-item">
-<div class="skill-name">Encoder Motor</div>
+<div class="skill-name">Raspberry Pi</div>
 <div>
 <div aria-label="Applied level" class="skill-meter level-2"><span></span><span></span><span></span>
 </div>
 <span class="skill-level-text">Applied</span>
 </div>
-<p class="skill-note">엔코더 모터 연결, 속도 피드백, PID 제어 구조 구성 경험.</p>
+<p class="skill-note">USB 카메라와 OpenCV 실행 환경, Arduino 시리얼 연동, 전원·발열 조건을 포함한 임베디드 비전 시스템 구성.</p>
+</div>
+<div class="skill-item">
+<div class="skill-name">Motion Control</div>
+<div>
+<div aria-label="Applied level" class="skill-meter level-2"><span></span><span></span><span></span>
+</div>
+<span class="skill-level-text">Applied</span>
+</div>
+<p class="skill-note">PCA9685 기반 다중 서보 제어, 엔코더 속도 피드백과 PID 제어를 슈팅·정렬·주행 동작에 적용.</p>
 </div>
 <div class="skill-item">
 <div class="skill-name">Serial Communication</div>
@@ -311,6 +302,15 @@
 <span class="skill-level-text">Applied</span>
 </div>
 <p class="skill-note">Raspberry Pi/PC와 Arduino 간 명령 전달, Shoot 트리거, cmd_vel 전달 구조 구현.</p>
+</div>
+<div class="skill-item">
+<div class="skill-name">PCB Design / EasyEDA</div>
+<div>
+<div aria-label="Familiar level" class="skill-meter level-1"><span></span><span></span><span></span>
+</div>
+<span class="skill-level-text">Familiar</span>
+</div>
+<p class="skill-note">간단한 프로토타입 회로와 연구용 Lock-in Amplifier PCB, Delta 툴헤드 PCB를 설계하고 외주 제작·동작 테스트 수행.</p>
 </div>
 </div>
 </article>
@@ -342,7 +342,7 @@
 </div>
 <span class="skill-level-text">Familiar</span>
 </div>
-<p class="skill-note">커스텀 데이터 학습과 추론 테스트 경험. 임베디드 성능 한계를 분석한 경험 중심.</p>
+<p class="skill-note">팀 프로젝트에서 커스텀 데이터 학습, 에폭 조정과 카메라 추론 테스트 과정을 경험하고 임베디드 환경의 성능 한계를 확인.</p>
 </div>
 <div class="skill-item">
 <div class="skill-name">ROS / RViz</div>
@@ -351,7 +351,7 @@
 </div>
 <span class="skill-level-text">Familiar</span>
 </div>
-<p class="skill-note">LiDAR 맵핑, RViz 시각화, cmd_vel 흐름 이해 및 커스텀 플랫폼 연동 학습.</p>
+<p class="skill-note">전공 수업과 반복적인 환경 구축을 통해 LiDAR 스캔, RViz 시각화와 cmd_vel 흐름을 학습.</p>
 </div>
 </div>
 </article>
@@ -373,9 +373,10 @@
 <div>
 <h3>Undergraduate Research Assistant</h3>
 <p>
-                VOCs를 ppb 수준에서 검출하기 위한 Photoacoustic Gas Sensor 연구에 참여했습니다.
-                센서 구조와 함께 Pre-amplifier, Band-pass Filter, Lock-in Amplifier 기반 신호 처리 회로를 다뤘습니다.
+                VOCs의 ppb 수준 검출을 목표로 한 Photoacoustic Gas Sensor 연구에 참여했습니다.
+                ppb 수준 검출을 위한 센서의 기계 구조물을 설계·적용하고, Pre-amplifier, Band-pass Filter, Lock-in Amplifier 기반 신호 처리 회로를 다뤘습니다.
                 위상 조절과 Phase Sensitive Detection을 통해 미세 광음향 신호에서 잡음을 줄이고 유효 신호를 분리하는 과정을 연구했습니다.
+                연구 장치 제작 과정에서 CNC 외주 도면 작성, 회로도·PCB 설계, 외주 제작과 보드 테스트를 수행했습니다.
               </p>
 </div>
 </article>
@@ -394,8 +395,8 @@
 <div>
 <h3>Capstone Design Contest</h3>
 <p>
-                산악 환경에서의 탐지와 구조 활동 보조를 목표로 LiDAR, AI Depth Camera, 열화상 카메라를 결합한 자율주행 로봇을 개발했습니다.
-                ROS 기반 맵핑과 주행 시스템을 구성하고, 센서별 역할 정의와 하드웨어·소프트웨어 통합을 수행했습니다.
+                산악 환경에서의 탐지와 구조 활동 보조를 목표로 LiDAR, AI Depth Camera와 열화상 카메라를 결합한 이동 로봇 프로토타입을 개발했습니다.
+                팀은 센서별 탐지와 매핑 기능을 구현했으며, Proto.KIL은 기계 설계와 하드웨어 통합을 담당했습니다. SLAM 기반 자율주행은 완성하지 못했습니다.
                 다양한 전공의 팀원들과 협업한 결과 교내 대상·최우수상, 교외 동상 및 표창장을 수상했습니다.
               </p>
 </div>
@@ -431,7 +432,7 @@
 </div>
 </footer>
 
-<script src="scripts/projects.js?v=20260712-3"></script>
-<script src="scripts/main.js?v=20260712-3"></script>
+<script src="scripts/projects.js?v=20260712-5"></script>
+<script src="scripts/main.js?v=20260712-5"></script>
 </body>
 </html>

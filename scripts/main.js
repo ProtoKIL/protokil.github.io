@@ -191,7 +191,7 @@ function renderProjectDetails() {
 
           <div class="story-box mt-24">
             <h3>System Architecture</h3>
-            <div class="architecture" aria-label="${project.title} 시스템 구조">
+            <div class="architecture${project.architectureFlow ? " has-flow" : ""}" aria-label="${project.title} 시스템 구조">
               ${project.architecture.map((node) => `
                 <div class="arch-node">
                   <b>${node.title}</b>

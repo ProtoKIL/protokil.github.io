@@ -21,14 +21,16 @@ const portfolioProjects = [
     ],
     story: [
       "약 1.2m 거리의 골대를 카메라로 인식하고, 로봇이 골대와 지정 거리로 정렬된 뒤 공을 발사하도록 구성했습니다.",
-      "초기에는 TensorFlow Lite와 YOLOv5를 검토했지만 Raspberry Pi에서 필요한 실시간성을 확보하기 어려워 OpenCV 기반 영상처리로 전환했습니다."
+      "초기에는 TensorFlow 환경을 구성하고 YOLOv5의 학습 에폭을 조정하며 약 3개월간 골대 인식과 카메라 추론을 테스트했습니다.",
+      "림의 타원 검출과 사각형 후보 검출을 거쳐 최종적으로 골대 형상의 contour 매칭 방식을 선택했으며, Raspberry Pi에서 실시간 제어 성능을 확보하기 위해 OpenCV 기반 파이프라인으로 전환했습니다."
     ],
     problem: "작은 모터로 목표 거리까지 공을 보내야 했고, 제한된 Raspberry Pi 연산 성능에서 골대 위치를 안정적으로 판단해야 했습니다.",
-    approach: "슈팅 기구의 기계적 이득을 조정하고 HSV 마스크, Canny Edge, contour와 사각형 후보 검출을 조합했습니다. 중심 좌표가 허용 범위에서 20프레임 연속 유지될 때만 슈팅 신호를 발생하도록 조건을 추가했습니다.",
+    approach: "슈팅 기구의 기계적 이득을 조정하고 HSV 마스크, Canny Edge와 contour 매칭을 조합했습니다. 실제 골대의 세로 길이, 영상에 검출된 골대의 픽셀 높이와 초점거리 매개변수를 이용해 단안 카메라 거리 추정을 반복 보정했습니다. 중심 좌표가 허용 범위에서 20프레임 연속 유지될 때만 슈팅 신호를 발생하도록 조건을 추가했습니다.",
+    architectureFlow: true,
     architecture: [
       { title: "USB Camera", subtitle: "Vision Input", description: "카메라 영상 입력" },
       { title: "Raspberry Pi", subtitle: "OpenCV", description: "골대 형상 검출" },
-      { title: "Center & Distance", subtitle: "Align Logic", description: "중심·거리 좌표 계산" },
+      { title: "Center & Distance", subtitle: "Alignment Logic", description: "중심·거리 좌표 계산" },
       { title: "Arduino Mega", subtitle: "Wheel Motor", description: "슈팅 위치로 이동" },
       { title: "Shooting Motor", subtitle: "PID", description: "PID 슈팅 제어" }
     ],
@@ -37,7 +39,7 @@ const portfolioProjects = [
       "제한된 모터 출력으로 목표 거리와 높이까지 공을 보내야 하는 문제",
       "조명 변화와 중심 좌표 흔들림으로 슈팅 신호가 잘못 발생할 수 있는 문제"
     ],
-    resultLesson: "하드웨어 제약이 있는 실시간 시스템에서는 복잡한 알고리즘보다 전체 제어 주기를 안정적으로 유지하는 것이 중요하다는 점을 확인했습니다. 또한 비차단 로직과 PID 제어, 시스템 통합을 고려한 하드웨어 설계의 중요성을 배웠습니다.<br><br>테스트에서 약 60%의 슈팅 성공률을 확인했습니다.<br><br><strong>주요 하드웨어:</strong> USB Webcam, Raspberry Pi, Arduino Mega, Encoder Motor, Motor Driver, 18650 Battery, PD Power Bank, Cooler, Buck Converter",
+    resultLesson: "하드웨어 제약이 있는 실시간 시스템에서는 복잡한 알고리즘보다 전체 제어 주기를 안정적으로 유지하는 것이 중요하다는 점을 확인했습니다. 또한 비차단 로직과 PID 제어, 시스템 통합을 고려한 하드웨어 설계의 중요성을 배웠습니다.<br><br>100회가 넘는 비공식 반복 시도에서 절반 이상 성공하는 수준을 확인했지만, 테스트 조건과 횟수를 체계적으로 기록하지 않아 정량 성과로 제시하지 않았습니다.<br><br><strong>주요 하드웨어:</strong> USB Webcam, Raspberry Pi, Arduino Mega, Encoder Motor, Motor Driver, 18650 Battery, PD Power Bank, Cooler, Buck Converter",
     media: [
       { type: "image", label: "CAD", src: "assets/basketBallRobot/basket-model.png", alt: "농구 슈팅 로봇 CAD 모델링" },
       { type: "image", label: "Display", src: "assets/basketBallRobot/basket-back.png", alt: "농구 슈팅 로봇 후면 디스플레이" },
@@ -57,24 +59,25 @@ const portfolioProjects = [
     categories: ["robotics", "mapping"],
     featured: true,
     thumbnail: { src: "assets/mountainDetectionRobot/mdr-overview.PNG", alt: "Mountain Detection Robot 전체 모습" },
-    summary: "산악 환경에서 위험 요소와 사람을 탐지하기 위해 복수 센서와 이동 플랫폼을 통합한 탐지 로봇 프로젝트입니다.",
+    summary: "산악 환경의 위험 요소와 사람 탐지를 목표로 복수 센서와 이동 플랫폼을 통합한 로봇 프로토타입입니다.",
     tags: ["ROS", "LiDAR", "Depth Camera", "Sensor Integration"],
-    lead: "사람이 접근하기 어려운 산악 지형에서 탐지와 맵핑을 수행해 구조 활동을 보조하는 로봇 시스템 프로젝트입니다.",
+    lead: "산악 지형에서 탐지와 매핑을 수행해 구조 활동을 보조하는 개념을 하드웨어 프로토타입으로 구현한 프로젝트입니다.",
     info: [
       { label: "Period", value: "2025.06 - 2025.12" },
       { label: "Team", value: "6 members" },
-      { label: "Role", value: "Robotics System Design · Presentation · System Integration" },
+      { label: "Role", value: "Mechanical Design · Hardware Integration · Presentation" },
       { label: "Type", value: "Capstone Design Contest" }
     ],
     story: [
-      "산악 환경은 경사, 장애물, 시야 차단과 비정형 지형 때문에 드론이나 실내·평지용 이동 로봇보다 복합적인 센서 구성과 구조 안정성이 필요합니다. 대용량 배터리를 탑재해 긴 왕복 경로를 지속적으로 맵핑할 수 있는 이동 플랫폼을 구현하는 데 의의를 두었습니다.",
+      "산악 환경은 경사, 장애물, 시야 차단과 비정형 지형 때문에 드론이나 실내·평지용 이동 로봇보다 복합적인 센서 구성과 구조 안정성이 필요합니다. 장시간 순찰을 고려해 대용량 배터리를 탑재할 수 있는 이동 플랫폼을 설계하는 데 의의를 두었습니다.",
       "LiDAR, Depth Camera, 열화상 센서와 이동 플랫폼이 서로 어떤 정보를 담당하고 어떻게 연결되는지를 중심으로 전체 시스템을 구성했습니다."
     ],
     problem: "단일 센서나 평지용 이동 구조만으로는 산악 지형과 사람 탐지 조건을 안정적으로 처리하기 어렵습니다. 험준한 환경을 이동해야 하므로 플랫폼을 컴팩트하게 구성하고 전자 부품을 물로부터 보호하는 구조도 필요했습니다.",
-    approach: "LiDAR 맵핑, 깊이 정보와 열화상 탐지의 역할을 구분하고 무한궤도형 이동 플랫폼에 센서를 통합했습니다. 설계 단계에서 모든 부품을 미리 어셈블리해 크기를 줄였으며, LiDAR 장착부에는 거북이 등껍질을 닮은 커버를 적용해 전자 부품의 방수성을 고려했습니다.",
+    approach: "LiDAR 매핑, 깊이 정보와 열화상 탐지의 역할을 구분하고 무한궤도형 이동 플랫폼에 센서를 통합했습니다. 설계 단계에서 모든 부품을 미리 어셈블리해 크기를 줄였으며, LiDAR 장착부에는 유선형 하우징을 적용해 우천 시 빗물 유입을 줄일 수 있도록 설계했습니다. 실제 방수 성능은 검증하지 않았습니다.",
+    architectureFlow: false,
     architecture: [
       { title: "Mobile Platform", subtitle: "Tracked Drive", description: "비정형 지형 이동" },
-      { title: "LiDAR", subtitle: "Scanning & Mapping", description: "주변 지형 맵핑" },
+      { title: "LiDAR", subtitle: "Scanning & Mapping", description: "주변 지형 매핑" },
       { title: "Depth Camera", subtitle: "AI Detection", description: "인체·장애물 탐지" },
       { title: "Thermal Camera", subtitle: "Heat Detection", description: "인체·화재 열원 감지" },
       { title: "Detection Logic", subtitle: "GPS & LoRa", description: "위치 공유·관제 연결" }
@@ -84,7 +87,7 @@ const portfolioProjects = [
       "서로 다른 센서의 좌표, 시야와 탐지 범위를 통합해야 하는 문제",
       "센서와 구동계가 추가될수록 중량, 전원과 기구 배치 제약이 커지는 문제"
     ],
-    resultLesson: "<strong>구현 결과:</strong> LiDAR 스캐닝과 맵핑을 구현했으며, 완전한 SLAM을 위해서는 엔코더 모터 등의 추가 하드웨어가 필요했습니다. AI Camera는 서보모터와 연계해 인체 추적과 장애물 감지를 구현했습니다. Thermal Camera와 AI Camera의 연동에는 실패했지만 열원 감지 테스트는 완료했습니다. GPS Module로 실시간 위치 추적과 핀포인트 시스템을 구축했으며, LoRa Module은 다중 로봇 관제 시스템의 기반으로 구성했으나 별도 검증은 진행하지 않았습니다.<br><br>하드웨어 설계와 통합, 배선이 주 과제였습니다. 컴퓨터공학과·자동차공학과 팀원들과 협업하며 원활한 소통, 함께 작업하는 시간과 공간이 결과물의 완성도에 미치는 영향을 배웠습니다.<br><br><strong>주요 하드웨어:</strong> LiDAR, AI Camera, Thermal Camera, GPS Module, LoRa Module, Jetson Orin Nano, DC Motor, Servo Motor, Motor Driver, 24V Battery, Buck Converter",
+    resultLesson: "<strong>팀 구현 결과:</strong> LiDAR 스캐닝과 매핑을 구현했지만 SLAM 기반 자율주행까지는 완성하지 못했습니다. AI Camera는 서보모터와 연계해 인체 추적과 장애물 감지를 구현했고, Thermal Camera는 AI Camera와의 연동에는 실패했지만 열원 감지 테스트를 완료했습니다. GPS 좌표를 프로그램과 앱에서 핀포인트로 지정·표시하는 기능을 구현했으며, 핀포인트 간 자율 이동은 구현하지 않았습니다. LoRa Module은 다중 로봇 관제 시스템의 기반으로 구성했으나 별도 검증은 진행하지 않았습니다.<br><br><strong>개인 기여:</strong> 로봇 모델링, 하드웨어 통합과 배선을 담당했습니다. 컴퓨터공학과·자동차공학과 팀원들과 역할을 분담하며, 각 분야의 결과물을 하나의 프로토타입으로 통합했습니다.<br><br><strong>주요 하드웨어:</strong> LiDAR, AI Camera, Thermal Camera, GPS Module, LoRa Module, Jetson Orin Nano, DC Motor, Servo Motor, Motor Driver, 24V Battery, Buck Converter",
     media: [
       { type: "image", label: "Overview", src: "assets/mountainDetectionRobot/mdr-overview.PNG", alt: "Mountain Detection Robot 전체 모습" },
       { type: "image", label: "Sketch", src: "assets/mountainDetectionRobot/mdr-sketch.PNG", alt: "Mountain Detection Robot 초기 스케치" },
@@ -102,10 +105,10 @@ const portfolioProjects = [
     categories: ["robotics", "mapping"],
     featured: false,
     thumbnail: null,
-    summary: "직접 구성한 모터·LiDAR·전원 시스템을 ROS 명령과 연결한 모바일 맵핑 플랫폼입니다.",
-    shortSummary: "ROS 명령과 LiDAR 맵핑을 연결한 커스텀 모바일 플랫폼입니다.",
+    summary: "직접 구성한 모터·LiDAR·전원 시스템을 ROS 명령과 연결한 모바일 매핑 플랫폼입니다.",
+    shortSummary: "ROS 명령과 LiDAR 매핑을 연결한 커스텀 모바일 플랫폼입니다.",
     tags: ["ROS", "YDLidar", "Serial", "Motor Control"],
-    lead: "상용 플랫폼이 아닌 커스텀 이동 로봇에서 Teleoperation, 모터 제어와 LiDAR 맵핑 흐름을 구성한 프로젝트입니다.",
+    lead: "상용 플랫폼이 아닌 커스텀 이동 로봇에서 Teleoperation, 모터 제어와 LiDAR 매핑 흐름을 구성한 프로젝트입니다.",
     info: [
       { label: "Period", value: "TODO: 확인 필요" },
       { label: "Team", value: "TODO: 확인 필요" },
@@ -118,6 +121,7 @@ const portfolioProjects = [
     ],
     problem: "직접 제작한 이동 플랫폼에서 ROS 명령, 시리얼 통신, 모터 제어와 LiDAR 좌표계를 끊김 없이 연결해야 했습니다.",
     approach: "Teleoperation과 cmd_vel 흐름을 Arduino 구동 제어로 전달하고, LiDAR 장착 높이와 Static TF 설정을 함께 검토했습니다.",
+    architectureFlow: false,
     architecture: [
       { title: "Keyboard Teleop", subtitle: "User Input", description: "주행 명령 입력" },
       { title: "cmd_vel", subtitle: "Velocity Command", description: "속도 명령 전달" },
@@ -162,6 +166,7 @@ const portfolioProjects = [
     ],
     problem: "동일 I2C 주소를 사용하는 컬러 센서 3개를 연결하고, 센서별 편차를 보정하면서 복수 경로를 반복 주행해야 했습니다.",
     approach: "TCA9548A I2C 멀티플렉서로 센서를 분리하고, 엔코더 모터와 경로 상태머신을 결합해 라인 추종과 U턴을 구성했습니다.",
+    architectureFlow: true,
     architecture: [
       { title: "Color Sensors", subtitle: "Line Detection", description: "바닥 색상 감지" },
       { title: "TCA9548A", subtitle: "I2C Multiplexer", description: "센서 채널 분리" },
@@ -190,25 +195,28 @@ const portfolioProjects = [
     categories: ["mechanical"],
     featured: true,
     thumbnail: { src: "assets/delta3Dprinter/delta-modeling-1.PNG", alt: "DIY Delta 3D Printer CAD 모델링" },
-    summary: "PETG 브라켓과 ABS 툴헤드·핫엔드 마운트를 직접 설계하고, 전장·냉각·Klipper 제어를 통합한 델타 3D 프린터입니다.",
+    summary: "PETG 브라켓과 ABS 툴헤드·핫엔드 마운트를 직접 설계하며 조립과 개선을 반복하고 있는 델타 3D 프린터 프로젝트입니다.",
     tags: ["Klipper", "TMC2209", "24V System", "Mechanical Build"],
-    lead: "기성품 조립을 넘어 주요 구조와 전장 부품을 직접 선정하고 통합한 델타 3D 프린터 프로젝트입니다.",
+    lead: "부품 선정, 모델링, 조립과 재설계를 반복하며 완성도를 높이고 있는 개인 제작 프로젝트입니다.",
     info: [
       { label: "Period", value: "TODO: 확인 필요" },
       { label: "Team", value: "Personal Build" },
-      { label: "Role", value: "TODO: 담당 범위 확인 필요" },
-      { label: "Type", value: "Machine Design" }
+      { label: "Role", value: "Mechanical Design · Component Selection · System Integration" },
+      { label: "Type", value: "Ongoing Personal Build" }
     ],
     story: [
       "Ø310mm 빌드 베드, 24V 전원, MKS Gen V2.1 보드, TMC2209 드라이버와 Klipper 기반 시스템을 구성했습니다.",
       "베드 체결, 전원 용량, 배선, 냉각과 델타 기구 보정을 개별 부품이 아닌 하나의 장비 시스템으로 검토했습니다.",
-      "PETG 브라켓과 ABS 툴헤드·핫엔드 마운트를 직접 설계하고 외주 3D 프린팅으로 제작해 프린터에 조립했습니다."
+      "PETG 브라켓과 ABS 툴헤드·핫엔드 마운트를 직접 설계하고 외주 3D 프린팅으로 제작했습니다.",
+      "툴헤드 배선을 정리하기 위한 PCB도 EasyEDA로 설계·제작해 적용했습니다.",
+      "세 차례 어셈블리를 진행했지만 부품 개선이 필요할 때마다 다시 분해하고 모델을 수정해 재주문했습니다. 현재 하부 시스템 구성을 확정했으며, 최종 어셈블리와 Klipper 설정을 다음 단계로 진행하고 있습니다."
     ],
-    problem: "열팽창, 원형 베드 체결, 24V 고전류 배선과 델타 기구의 기하학적 보정을 함께 고려해야 했습니다.",
-    approach: "6061 알루미늄 캐리어와 6점 지지 베드 구조를 검토하고, TMC2209와 Klipper/Mainsail 기반 제어 구성을 선택했습니다.",
+    problem: "부품을 실제 조립한 뒤에야 드러나는 간섭과 치수 문제를 해결하면서, 열팽창과 원형 베드 체결, 24V 고전류 배선까지 함께 고려해야 했습니다.",
+    approach: "6061 알루미늄 캐리어와 6점 지지 베드 구조를 검토하고, 어셈블리 과정에서 발견한 간섭을 모델에 반영해 부품을 반복 개선했습니다. 제어 구성은 TMC2209와 Klipper/Mainsail을 기준으로 선정했습니다.",
+    architectureFlow: false,
     architecture: [
       { title: "Delta Frame", subtitle: "Motion Structure", description: "3축 델타 운동" },
-      { title: "Heated Bed", subtitle: "Ø310 mm", description: "출력면 가열·지지" },
+      { title: "Build Bed", subtitle: "Ø310 / Heater Ø300", description: "출력면 가열·지지" },
       { title: "MKS Gen V2.1", subtitle: "Control Board", description: "구동 신호 제어" },
       { title: "TMC2209", subtitle: "Motor Driver", description: "스테퍼 모터 구동" },
       { title: "Klipper / Mainsail", subtitle: "Firmware & UI", description: "보정·출력 관리" }
@@ -218,7 +226,7 @@ const portfolioProjects = [
       "약 14.6A급 24V 부하를 고려한 배선과 전원 구성이 필요한 문제",
       "델타 구조의 기하학적 오차와 베드 평면을 보정해야 하는 문제"
     ],
-    resultLesson: "TODO: 출력 정밀도, 반복 출력 결과와 열 안정성 검증 자료 필요.",
+    resultLesson: "현재 진행 중인 프로젝트로, 세 차례의 조립과 분해를 거치며 하부 시스템과 주요 부품 배치를 확정했습니다. 완성된 프린터의 성능을 과장하기보다, 실제 조립에서 발견한 간섭을 모델링과 부품 재제작으로 해결하는 반복 설계 과정을 중심으로 기록하고 있습니다.<br><br><strong>다음 단계:</strong> 최종 어셈블리, Klipper 설정, 캘리브레이션과 출력 검증",
     media: [
       { type: "image", label: "Modeling 1", src: "assets/delta3Dprinter/delta-modeling-1.PNG", alt: "DIY Delta 3D Printer CAD 모델링 전체 모습" },
       { type: "image", label: "Modeling 2", src: "assets/delta3Dprinter/delta-modeling-2.PNG", alt: "DIY Delta 3D Printer CAD 모델링 상세" },
