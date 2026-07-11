@@ -1,5 +1,5 @@
 /* Stylesheet manifest: load order is significant. */
-@import url("./base.css");
-@import url("./sections.css");
-@import url("./projects.css");
-@import url("./responsive.css");
+@import url("./base.css?v=20260712-3");
+@import url("./sections.css?v=20260712-3");
+@import url("./projects.css?v=20260712-3");
+@import url("./responsive.css?v=20260712-3");

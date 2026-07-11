@@ -2,11 +2,61 @@ function renderTagList(tags) {
   return tags.map((tag) => `<span class="tag">${tag}</span>`).join("");
 }
 
+function getOrderedProjects() {
+  return [...portfolioProjects].sort((a, b) => a.number.localeCompare(b.number));
+}
+
+function renderHeroSlideshow() {
+  const target = document.querySelector("#heroSlideshow");
+  if (!target || !heroMedia.length) return;
+
+  const slides = heroMedia
+    .map((item, index) => `<img class="hero-slide${index === 0 ? " is-active" : ""}" src="${item.src}" alt="${item.alt}" />`)
+    .join("");
+  const controls = heroMedia.length > 1
+    ? `<div class="hero-slide-controls" aria-label="Hero 이미지 선택">
+        ${heroMedia.map((_, index) => `<button class="hero-slide-dot${index === 0 ? " is-active" : ""}" type="button" data-index="${index}" aria-label="${index + 1}번 이미지"></button>`).join("")}
+      </div>`
+    : "";
+
+  target.innerHTML = slides + controls;
+
+  if (heroMedia.length < 2) return;
+
+  const slideElements = target.querySelectorAll(".hero-slide");
+  const dots = target.querySelectorAll(".hero-slide-dot");
+  let currentIndex = 0;
+  let timer;
+
+  const showSlide = (index) => {
+    currentIndex = index;
+    slideElements.forEach((slide, slideIndex) => slide.classList.toggle("is-active", slideIndex === index));
+    dots.forEach((dot, dotIndex) => dot.classList.toggle("is-active", dotIndex === index));
+  };
+
+  const startSlideshow = () => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    window.clearInterval(timer);
+    timer = window.setInterval(() => showSlide((currentIndex + 1) % slideElements.length), 5000);
+  };
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      showSlide(Number(dot.dataset.index));
+      startSlideshow();
+    });
+  });
+
+  target.addEventListener("mouseenter", () => window.clearInterval(timer));
+  target.addEventListener("mouseleave", startSlideshow);
+  startSlideshow();
+}
+
 function renderProjectCards() {
   const target = document.querySelector("#featuredProjects");
   if (!target) return;
 
-  target.innerHTML = portfolioProjects
+  target.innerHTML = getOrderedProjects()
     .filter((project) => project.featured)
     .map((project) => {
       const category = project.categories.join(" ");
@@ -15,7 +65,7 @@ function renderProjectCards() {
         : `<div class="project-thumb">${project.title} Image / Render</div>`;
 
       return `
-        <a class="card project-card" data-category="${category}" href="#${project.id}" aria-label="${project.title} 상세 보기">
+        <a class="card project-card project-list-card" data-category="${category}" href="#${project.id}" aria-label="${project.title} 상세 보기">
           ${thumb}
           <div class="project-body">
             <h3>${project.title}</h3>
@@ -34,6 +84,10 @@ function renderProjectMedia(project) {
       .map((item, index) => {
         const active = index === 0 ? " is-active" : "";
         const extraClass = item.className ? ` ${item.className}` : "";
+
+        if (item.type === "placeholder") {
+          return `<div class="media-item media-placeholder${active}"><div>${item.text}</div></div>`;
+        }
 
         if (item.type === "video") {
           const poster = item.poster ? ` poster="${item.poster}"` : "";
@@ -86,11 +140,21 @@ function renderProjectDetails() {
   const target = document.querySelector("#projectDetails");
   if (!target) return;
 
-  target.innerHTML = portfolioProjects
+  target.innerHTML = getOrderedProjects()
     .map((project) => {
+      const infoByLabel = Object.fromEntries(project.info.map((item) => [item.label, item.value]));
+      const roleItems = infoByLabel.Role.split(" · ");
       const info = `
         <div class="project-info">
-          ${project.info.map((item) => `<div class="info-item"><span>${item.label}</span><b>${item.value}</b></div>`).join("")}
+          <div class="info-card info-summary-card">
+            ${["Period", "Team", "Type"].map((label) => `
+              <div class="info-row"><span>${label}</span><b>${infoByLabel[label]}</b></div>
+            `).join("")}
+          </div>
+          <div class="info-card role-card">
+            <span class="info-card-label">Role</span>
+            <div class="role-list">${roleItems.map((role) => `<b>${role}</b>`).join("")}</div>
+          </div>
         </div>
       `;
       const storyParagraphs = project.story.map((paragraph) => `<p>${paragraph}</p>`).join("");
@@ -115,29 +179,32 @@ function renderProjectDetails() {
           </div>
 
           <div class="grid-2 mt-24">
-            <div class="story-box"><h3>Problem</h3><p>${project.problem}</p></div>
+            <div class="story-box">
+              <h3>Problem</h3>
+              <p>${project.problem}</p>
+              <ul class="problem-points">
+                ${project.challenges.map((challenge) => `<li>${challenge}</li>`).join("")}
+              </ul>
+            </div>
             <div class="story-box"><h3>Approach</h3><p>${project.approach}</p></div>
           </div>
 
           <div class="story-box mt-24">
             <h3>System Architecture</h3>
             <div class="architecture" aria-label="${project.title} 시스템 구조">
-              ${project.architecture.map((node) => `<div class="arch-node">${node}</div>`).join("")}
+              ${project.architecture.map((node) => `
+                <div class="arch-node">
+                  <b>${node.title}</b>
+                  <span>${node.subtitle}</span>
+                  <small>${node.description}</small>
+                </div>
+              `).join("")}
             </div>
-            <p class="arrow-note">${project.architectureNote}</p>
           </div>
 
-          <div class="grid-2 mt-24">
-            <div class="story-box">
-              <h3>Engineering Challenges</h3>
-              <ul class="challenge-list">
-                ${project.challenges.map((challenge, index) => `<li><b>Challenge ${index + 1}.</b> ${challenge}</li>`).join("")}
-              </ul>
-            </div>
-            <div class="story-box">
-              <h3>Result & Lesson</h3>
-              <p>${project.resultLesson}</p>
-            </div>
+          <div class="story-box mt-24 result-card">
+            <h3>Result & Lesson</h3>
+            <p>${project.resultLesson}</p>
           </div>
 
           <div class="mt-24">
@@ -154,15 +221,18 @@ function renderOtherProjects() {
   const target = document.querySelector("#otherProjects");
   if (!target) return;
 
-  target.innerHTML = portfolioProjects
+  target.innerHTML = getOrderedProjects()
     .filter((project) => !project.featured)
-    .map((project) => `
-      <a class="card other-project-card" href="#${project.id}" aria-label="${project.title} 상세 보기">
+    .map((project) => {
+      const category = project.categories.join(" ");
+      return `
+      <a class="card other-project-card project-list-card" data-category="${category}" href="#${project.id}" aria-label="${project.title} 상세 보기">
         <h3>${project.title}</h3>
-        <p>${project.summary}</p>
+        <p>${project.shortSummary || project.summary}</p>
         <div class="project-meta">${renderTagList(project.tags)}</div>
       </a>
-    `)
+    `;
+    })
     .join("");
 }
 
@@ -208,7 +278,8 @@ function initNavigation() {
 
 function initProjectFilters() {
   const filterButtons = document.querySelectorAll(".filter-btn");
-  const projectCards = document.querySelectorAll(".project-card[data-category]");
+  const projectCards = document.querySelectorAll(".project-list-card[data-category]");
+  const projectGroups = document.querySelectorAll("[data-project-group]");
 
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -221,6 +292,10 @@ function initProjectFilters() {
         const categories = card.dataset.category.split(" ");
         const shouldShow = filter === "all" || categories.includes(filter);
         card.classList.toggle("is-hidden", !shouldShow);
+      });
+
+      projectGroups.forEach((group) => {
+        group.hidden = !group.querySelector(".project-list-card:not(.is-hidden)");
       });
     });
   });
@@ -252,6 +327,9 @@ function initMediaShowcase() {
 
         if (selectedItem.tagName.toLowerCase() === "video") {
           selectedItem.load();
+          selectedItem.play().catch(() => {
+            // 자동 재생이 차단되면 기본 비디오 컨트롤로 재생할 수 있습니다.
+          });
         }
       });
     });
@@ -259,6 +337,7 @@ function initMediaShowcase() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  renderHeroSlideshow();
   renderProjectCards();
   renderProjectDetails();
   renderOtherProjects();

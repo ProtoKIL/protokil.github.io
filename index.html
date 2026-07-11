@@ -12,7 +12,7 @@
   - assets/ 폴더에는 이미지와 영상을 넣습니다.
   =========================================================
 -->
-<link href="styles/main.css" rel="stylesheet"/>
+<link href="styles/main.css?v=20260712-3" rel="stylesheet"/>
 </head>
 <body>
 <div aria-hidden="true" class="scroll-progress" id="scrollProgress"></div>
@@ -86,12 +86,10 @@
 </div>
 </div>
 <aside aria-label="대표 프로젝트 이미지 영역" class="hero-card">
-<div class="hero-image">
-<img alt="ProtoKIL 농구 슈팅 로봇의 실제 동작 모습" src="assets/basketBallRobot/basket-shooting.png"/>
-</div>
+<div aria-label="대표 프로젝트 이미지 슬라이드" class="hero-image" id="heroSlideshow"></div>
 <div class="floating-spec">
 <div class="spec-box">
-<b>6</b>
+<b>5</b>
 <span>Documented Projects</span>
 </div>
 <div class="spec-box">
@@ -147,7 +145,7 @@
 <div class="card-label">Engineering Direction</div>
 <p>
               Proto.KIL의 관심 분야는 로봇 하드웨어, 기구 설계, 센서 통합, 자율주행 로봇 시스템입니다.
-              제품이 실제로 움직이기 위해 필요한 구조, 전장, 제어, 테스트 조건을 함께 고려하는 엔지니어로 성장하고자 합니다.
+              제품이 실제로 움직이기 위해 필요한 구조, 전장, 제어, 테스트 조건을 함께 고려하는 엔지니어를 지향합니다.
             </p>
 <div class="pill-row">
 <span class="pill">Problem Definition</span>
@@ -165,8 +163,8 @@
 <section class="section" id="projects">
 <div class="container">
 <div class="section-title">
-<div class="eyebrow">Featured Projects</div>
-<h2>대표 프로젝트</h2>
+<div class="eyebrow">Featured Projects &amp; Sub Projects</div>
+<h2>대표 프로젝트 및 추가 프로젝트</h2>
 <p class="lead">
             각 프로젝트는 단순한 결과물 소개가 아니라, 제작 이유와 문제 해결 과정을 중심으로 정리했습니다.
           </p>
@@ -176,8 +174,16 @@
 <button class="filter-btn" data-filter="robotics" type="button">Robotics</button>
 <button class="filter-btn" data-filter="vision" type="button">Vision</button>
 <button class="filter-btn" data-filter="mapping" type="button">Mapping</button>
+<button class="filter-btn" data-filter="mechanical" type="button">Mechanical Design</button>
 </div>
+<div class="project-list-group" data-project-group>
+<div class="project-list-heading"><span>Featured Projects</span><b>대표 프로젝트</b></div>
 <div class="grid-3" id="featuredProjects"></div>
+</div>
+<div class="project-list-group sub-project-group" data-project-group>
+<div class="project-list-heading"><span>Sub Projects</span><b>추가 프로젝트</b></div>
+<div class="sub-project-grid" id="otherProjects"></div>
+</div>
 </div>
 </section>
 <!-- =========================
@@ -196,45 +202,6 @@
 <!-- ROS Project -->
 
 <div id="projectDetails"></div></div>
-</section>
-<!-- =========================
-         Other Projects
-         ========================= -->
-<section class="section">
-<div class="container">
-<div class="section-title">
-<div class="eyebrow">Other Projects</div>
-<h2>추가 프로젝트</h2>
-</div>
-<div class="grid-3" id="otherProjects"></div>
-</div>
-</section>
-<!-- =========================
-         Project Evidence Guide
-         ========================= -->
-<section class="section">
-<div class="container">
-<div class="section-title">
-<div class="eyebrow">Project Evidence</div>
-<h2>프로젝트마다 최소 두 종류의 근거 자료를 배치합니다.</h2>
-<p class="lead">
-            완성 사진 한 장만으로는 설계 판단과 문제 해결 과정을 설명하기 어렵습니다.
-            각 프로젝트에는 전체 구조와 실제 검증을 서로 다른 미디어로 보여주는 방식을 권장합니다.
-          </p>
-</div>
-<div class="grid-3">
-<div class="media-placeholder">System Overview<br/>전체 로봇 / CAD 조립도</div>
-<div class="media-placeholder">Design Evidence<br/>회로 / 센서 배치 / 메커니즘</div>
-<div class="media-placeholder">Validation Evidence<br/>작동 영상 / 측정 결과 / 실패 비교</div>
-</div>
-<div class="card mt-24">
-<h3>미디어 작성 원칙</h3>
-<p>
-            프로젝트마다 최소 두 개의 미디어를 사용하되 같은 장면을 반복하지 않습니다.
-            하나는 시스템 구성을, 다른 하나는 작동 또는 검증 결과를 설명하며 자료가 없는 경우 TODO로 표시합니다.
-          </p>
-</div>
-</div>
 </section>
 <!-- =========================
          Skills
@@ -402,17 +369,18 @@
 </div>
 <div class="timeline">
 <article class="timeline-item">
-<div class="timeline-date">Research</div>
+<div class="timeline-date">2024.02 - 2025.10</div>
 <div>
 <h3>Undergraduate Research Assistant</h3>
 <p>
-                VOCs ppb 단위 감지를 위한 Photoacoustic Gas Sensor 구조 및 신호 처리 회로 연구에 참여했습니다.
-                PAS 센서 구조, Lock-in Amplifier, 위상 조절 및 필터링 구조를 중심으로 학습하고 실험했습니다.
+                VOCs를 ppb 수준에서 검출하기 위한 Photoacoustic Gas Sensor 연구에 참여했습니다.
+                센서 구조와 함께 Pre-amplifier, Band-pass Filter, Lock-in Amplifier 기반 신호 처리 회로를 다뤘습니다.
+                위상 조절과 Phase Sensitive Detection을 통해 미세 광음향 신호에서 잡음을 줄이고 유효 신호를 분리하는 과정을 연구했습니다.
               </p>
 </div>
 </article>
 <article class="timeline-item">
-<div class="timeline-date">Capstone</div>
+<div class="timeline-date">2024.07 - 2025.06</div>
 <div>
 <h3>Capstone Design Project</h3>
 <p>
@@ -422,11 +390,13 @@
 </div>
 </article>
 <article class="timeline-item">
-<div class="timeline-date">ROS / Mapping</div>
+<div class="timeline-date">2025.06 - 2025.12</div>
 <div>
-<h3>Autonomous Robot / Mapping Project</h3>
+<h3>Capstone Design Contest</h3>
 <p>
-                LiDAR와 ROS 기반 맵핑, 엔코더 모터 제어, 시리얼 통신 구조를 활용한 자율주행 로봇 플랫폼을 구성했습니다.
+                산악 환경에서의 탐지와 구조 활동 보조를 목표로 LiDAR, AI Depth Camera, 열화상 카메라를 결합한 자율주행 로봇을 개발했습니다.
+                ROS 기반 맵핑과 주행 시스템을 구성하고, 센서별 역할 정의와 하드웨어·소프트웨어 통합을 수행했습니다.
+                다양한 전공의 팀원들과 협업한 결과 교내 대상·최우수상, 교외 동상 및 표창장을 수상했습니다.
               </p>
 </div>
 </article>
@@ -444,11 +414,12 @@
 <h2>Proto.KIL은 실제 제약 안에서 움직이는 해결책을 설계합니다.</h2>
 </div>
 <p class="lead">
-            프로젝트 자료, 시연 영상, CAD 이미지와 코드 설명은 공개 가능한 범위를 확인한 뒤 추가합니다.
+            프로젝트 자료, 시연 영상, CAD 이미지와 코드 설명은 공개 가능한 범위를 확인한 뒤 추가하겠습니다.
           </p>
 <div class="pill-row">
 <span class="pill">Public name: Proto.KIL</span>
 <span class="pill">Location: Korea</span>
+<a class="pill" href="mailto:samkil0823@gmail.com">samkil0823@gmail.com</a>
 </div>
 </div>
 </div>
@@ -460,7 +431,7 @@
 </div>
 </footer>
 
-<script src="scripts/projects.js"></script>
-<script src="scripts/main.js"></script>
+<script src="scripts/projects.js?v=20260712-3"></script>
+<script src="scripts/main.js?v=20260712-3"></script>
 </body>
 </html>

@@ -32,6 +32,10 @@
         grid-template-columns: 1fr;
       }
 
+      .sub-project-grid {
+        grid-template-columns: 1fr;
+      }
+
       .hero {
         min-height: auto;
         padding: 54px 0 38px;
