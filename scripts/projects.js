@@ -30,11 +30,15 @@ const portfolioProjects = [
     ],
     resultLesson: "하드웨어 제약이 있는 실시간 시스템에서는 가장 복잡한 알고리즘보다 전체 제어 주기를 안정적으로 유지하는 방법이 중요하다는 점을 확인했습니다. 테스트에서 약 60%의 슈팅 성공률을 확인했습니다. TODO: 반복 테스트 횟수와 조건별 결과 정리 필요.",
     media: [
-      { type: "image", label: "Main", src: "assets/basketBallRobot/basket-model.png", alt: "농구 슈팅 로봇 대표 사진" },
-      { type: "image", label: "Assembly", src: "assets/basketBallRobot/basket-assem.png", alt: "농구 슈팅 로봇 조립 구조" },
-      { type: "image", label: "Circuit", src: "assets/basketBallRobot/basket-circuit.png", alt: "농구 로봇 회로 구성", className: "diagram" },
-      { type: "image", label: "Mechanism", src: "assets/basketBallRobot/basket-back.png", alt: "슈팅 메커니즘 상세" },
-      { type: "video", label: "Demo", src: "assets/basketBallRobot/basket-shooting-1.mp4", poster: "assets/basketBallRobot/basket-model.png" }
+      { type: "image", label: "CAD", src: "assets/basketBallRobot/basket-model.png", alt: "농구 슈팅 로봇 CAD 모델링" },
+      { type: "image", label: "Display", src: "assets/basketBallRobot/basket-back.png", alt: "농구 슈팅 로봇 후면 디스플레이" },
+      { type: "image", label: "Circuit", src: "assets/basketBallRobot/basket-circuit.png", alt: "농구 슈팅 로봇 회로 구성", className: "diagram" },
+      { type: "video", label: "Assembly", src: "assets/basketBallRobot/basket-assem.mp4" },
+      { type: "video", label: "Camera Detection", src: "assets/basketBallRobot/basket-scanning.mp4" },
+      { type: "video", label: "Demo 1", src: "assets/basketBallRobot/basket-demo-1.mp4" },
+      { type: "video", label: "Demo 2", src: "assets/basketBallRobot/basket-demo-2.mp4" },
+      { type: "video", label: "Demo 3", src: "assets/basketBallRobot/basket-demo-3.mp4" },
+      { type: "video", label: "Result", src: "assets/basketBallRobot/basket-shooting.mp4" }
     ]
   },
   {
@@ -68,8 +72,11 @@ const portfolioProjects = [
     ],
     resultLesson: "TODO: 실제 구현 범위, 주행·탐지 결과와 개선 과정 확인 필요.",
     mediaPlaceholders: [
-      { title: "System Overview", text: "TODO: 전체 로봇 사진 또는 CAD 조립도와 센서 배치 자료 필요" },
-      { title: "Field Validation", text: "TODO: 산악 환경 주행, 맵핑 또는 탐지 결과 영상 필요" }
+      { title: "TODO", text: "대표 이미지: 전체 로봇 사진 또는 CAD 렌더" },
+      { title: "TODO", text: "조립 구조: 프레임, 구동계와 센서 배치" },
+      { title: "TODO", text: "시스템 구성: 센서 연결 또는 제어 구조" },
+      { title: "TODO", text: "핵심 메커니즘: 비정형 지형 대응 구조" },
+      { title: "TODO", text: "작동 영상: 산악 환경 주행, 맵핑 또는 탐지 결과" }
     ]
   },
   {
@@ -103,8 +110,11 @@ const portfolioProjects = [
     ],
     resultLesson: "TODO: 최종 ROS 버전, SLAM 패키지, 완성 지도와 반복 주행 결과 확인 필요.",
     mediaPlaceholders: [
-      { title: "Robot Platform", text: "TODO: LiDAR 장착 위치와 구동계가 보이는 실제 플랫폼 사진 필요" },
-      { title: "RViz / Mapping Result", text: "TODO: 실제 지도 결과, TF 구성 또는 주행 시연 자료 필요" }
+      { title: "TODO", text: "대표 이미지: 완성된 로봇 플랫폼" },
+      { title: "TODO", text: "조립 구조: LiDAR 장착 위치와 구동계" },
+      { title: "TODO", text: "시스템 구성: ROS 노드, TF 또는 배선 구조" },
+      { title: "TODO", text: "핵심 결과: RViz 화면 또는 완성 지도" },
+      { title: "TODO", text: "작동 영상: 원격 조종 또는 반복 주행 시연" }
     ]
   },
   {
@@ -138,8 +148,11 @@ const portfolioProjects = [
     ],
     resultLesson: "TODO: 색상 기준값, 반복 주행 성공률과 개선 과정 확인 필요.",
     mediaPlaceholders: [
-      { title: "Sensor Layout", text: "TODO: 컬러 센서 3개의 배치와 하부 구조 사진 필요" },
-      { title: "Route Validation", text: "TODO: 다중 색상 라인 반복 주행 영상 필요" }
+      { title: "TODO", text: "대표 이미지: 완성된 청소 로봇" },
+      { title: "TODO", text: "조립 구조: 컬러 센서 3개의 배치와 하부 구조" },
+      { title: "TODO", text: "시스템 구성: 센서, 멀티플렉서와 모터 연결" },
+      { title: "TODO", text: "핵심 메커니즘: 라인 추종 및 청소 장치" },
+      { title: "TODO", text: "작동 영상: 다중 색상 라인 반복 주행" }
     ]
   },
   {
@@ -173,8 +186,11 @@ const portfolioProjects = [
     ],
     resultLesson: "TODO: 확정된 연구 성과, 본인 담당 범위와 실험 결과 확인 필요.",
     mediaPlaceholders: [
-      { title: "Experiment Setup", text: "TODO: PAS 센서 및 측정 장비 구성 사진 필요" },
-      { title: "Signal Evidence", text: "TODO: 필터 전후 파형 또는 위상 측정 결과 필요" }
+      { title: "TODO", text: "대표 이미지: PAS 센서와 전체 실험 장치" },
+      { title: "TODO", text: "조립 구조: 센서 셀 및 측정 장비 구성" },
+      { title: "TODO", text: "회로 구성: 증폭, 필터와 Lock-in Amplifier" },
+      { title: "TODO", text: "핵심 결과: 필터 전후 파형 또는 위상 측정 결과" },
+      { title: "TODO", text: "실험 영상: 측정 절차 또는 장비 작동" }
     ]
   },
   {
@@ -208,8 +224,11 @@ const portfolioProjects = [
     ],
     resultLesson: "TODO: 출력 정밀도, 반복 출력 결과와 열 안정성 검증 자료 필요.",
     mediaPlaceholders: [
-      { title: "Mechanical Build", text: "TODO: 프레임, 델타 암과 베드 조립 사진 필요" },
-      { title: "Print Validation", text: "TODO: 캘리브레이션 결과와 실제 출력물 사진 필요" }
+      { title: "TODO", text: "대표 이미지: 완성된 DIY Delta 3D Printer" },
+      { title: "TODO", text: "조립 구조: 프레임, 델타 암과 베드" },
+      { title: "TODO", text: "시스템 구성: 제어 보드, 전원과 배선" },
+      { title: "TODO", text: "핵심 결과: 캘리브레이션 결과와 실제 출력물" },
+      { title: "TODO", text: "작동 영상: 캘리브레이션 또는 출력 과정" }
     ]
   }
 ];

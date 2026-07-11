@@ -36,8 +36,9 @@ function renderProjectMedia(project) {
         const extraClass = item.className ? ` ${item.className}` : "";
 
         if (item.type === "video") {
+          const poster = item.poster ? ` poster="${item.poster}"` : "";
           return `
-            <video class="media-item${active}" src="${item.src}" muted controls playsinline preload="metadata" poster="${item.poster || ""}"></video>
+            <video class="media-item${active}" src="${item.src}" muted controls playsinline preload="metadata"${poster}></video>
           `;
         }
 
@@ -58,16 +59,22 @@ function renderProjectMedia(project) {
   }
 
   if (project.mediaPlaceholders && project.mediaPlaceholders.length) {
+    const items = project.mediaPlaceholders
+      .map((placeholder, index) => `
+        <div class="media-item media-placeholder${index === 0 ? " is-active" : ""}">
+          <div>${placeholder.text}</div>
+        </div>
+      `)
+      .join("");
+
+    const thumbs = project.mediaPlaceholders
+      .map((placeholder, index) => `<button class="media-thumb${index === 0 ? " is-active" : ""}" type="button" data-index="${index}">${placeholder.title}</button>`)
+      .join("");
+
     return `
-      <div class="grid-2">
-        ${project.mediaPlaceholders.map((placeholder) => `
-          <div class="media-placeholder">
-            <div>
-              <strong>${placeholder.title}</strong><br />
-              ${placeholder.text}
-            </div>
-          </div>
-        `).join("")}
+      <div class="media-showcase">
+        <div class="media-stage">${items}</div>
+        <div class="media-thumbs" aria-label="${project.title} 미디어 선택">${thumbs}</div>
       </div>
     `;
   }

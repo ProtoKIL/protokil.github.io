@@ -293,6 +293,13 @@
       display: block;
     }
 
+    .media-stage .media-placeholder.is-active {
+      display: grid;
+      min-height: 0;
+      border: 0;
+      border-radius: 0;
+    }
+
     .media-stage video.media-item {
       background: #000;
     }
