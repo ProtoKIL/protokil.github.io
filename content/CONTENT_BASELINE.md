@@ -676,6 +676,12 @@ ppb 수준 검출을 위한 센서의 기계 구조물을 설계·적용하고, 
 위상 조절과 Phase Sensitive Detection을 통해 미세 광음향 신호에서 잡음을 줄이고 유효 신호를 분리하는 과정을 연구했습니다.
 연구 장치 제작 과정에서 CNC 외주 도면 작성, 회로도·PCB 설계, 외주 제작과 보드 테스트를 수행했습니다.
 
+### Undergraduate Research Publication
+
+**광음향 분광법 가스센서 신호처리를 위한 락인앰프 설계-I**
+
+한국교통대학교 논문집 제60집 · **제1저자** · 2025
+
 ## Capstone
 
 ### Capstone Design Project

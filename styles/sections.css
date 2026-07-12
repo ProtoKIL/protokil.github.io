@@ -309,6 +309,25 @@
       font-weight: 800;
     }
 
+    .publication-note {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .publication-note h4 {
+      margin-bottom: 6px;
+      color: white;
+      line-height: 1.45;
+    }
+
+    .publication-note p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
     .skill-group {
       display: grid;
       gap: 14px;
