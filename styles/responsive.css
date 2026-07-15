@@ -17,6 +17,10 @@
        8. 반응형
        ========================= */
     @media (max-width: 960px) {
+      .awards-gallery {
+        grid-auto-columns: minmax(250px, 48%);
+      }
+
       h1 {
         font-size: 2.65rem;
       }
@@ -105,6 +109,11 @@
     }
 
     @media (max-width: 640px) {
+      .awards-gallery {
+        grid-auto-columns: minmax(250px, 86%);
+        gap: 12px;
+      }
+
       body {
         line-height: 1.55;
       }

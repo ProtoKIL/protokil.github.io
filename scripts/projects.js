@@ -9,7 +9,7 @@ const portfolioProjects = [
     title: "Basketball Shooting Robot",
     categories: ["robotics", "vision"],
     featured: true,
-    thumbnail: { src: "assets/basketBallRobot/basket-model.png", alt: "농구 슈팅 로봇 대표 이미지" },
+    thumbnail: { src: "assets/basketBallRobot/basket-overview.png", alt: "농구 슈팅 로봇 완성 모습" },
     summary: "임베디드 환경의 연산 한계를 분석하고 OpenCV 기반 경량 비전 파이프라인과 슈팅 기구를 통합한 로봇입니다.",
     tags: ["OpenCV", "Raspberry Pi", "Arduino", "Servo Control", "Encoder / PID"],
     lead: "골대 인식, 거리 조절, 정렬 판단과 슈팅 동작을 하나의 로봇 시스템으로 연결한 프로젝트입니다.",
@@ -41,15 +41,14 @@ const portfolioProjects = [
     ],
     resultLesson: "하드웨어 제약이 있는 실시간 시스템에서는 복잡한 알고리즘보다 전체 제어 주기를 안정적으로 유지하는 것이 중요하다는 점을 확인했습니다. 또한 비차단 로직과 PID 제어, 시스템 통합을 고려한 하드웨어 설계의 중요성을 배웠습니다.<br><br>100회가 넘는 비공식 반복 시도에서 절반 이상 성공하는 수준을 확인했지만, 테스트 조건과 횟수를 체계적으로 기록하지 않아 정량 성과로 제시하지 않았습니다.<br><br><strong>주요 하드웨어:</strong> USB Webcam, Raspberry Pi, Arduino Mega, Encoder Motor, Motor Driver, 18650 Battery, PD Power Bank, Cooler, Buck Converter",
     media: [
-      { type: "image", label: "CAD", src: "assets/basketBallRobot/basket-model.png", alt: "농구 슈팅 로봇 CAD 모델링" },
-      { type: "image", label: "Display", src: "assets/basketBallRobot/basket-back.png", alt: "농구 슈팅 로봇 후면 디스플레이" },
-      { type: "image", label: "Circuit", src: "assets/basketBallRobot/basket-circuit.png", alt: "농구 슈팅 로봇 회로 구성", className: "diagram" },
-      { type: "video", label: "Assembly", src: "assets/basketBallRobot/basket-assem.mp4" },
+      { type: "video", label: "Result", src: "assets/basketBallRobot/basket-result.mp4" },
       { type: "video", label: "Camera Detection", src: "assets/basketBallRobot/basket-scanning.mp4" },
-      { type: "video", label: "Demo 1", src: "assets/basketBallRobot/basket-demo-1.mp4" },
-      { type: "video", label: "Demo 2", src: "assets/basketBallRobot/basket-demo-2.mp4" },
-      { type: "video", label: "Demo 3", src: "assets/basketBallRobot/basket-demo-3.mp4" },
-      { type: "video", label: "Result", src: "assets/basketBallRobot/basket-shooting.mp4" }
+      { type: "image", label: "Modeling", src: "assets/basketBallRobot/basket-modeling.png", alt: "농구 슈팅 로봇 CAD 모델링" },
+      { type: "video", label: "Assembly", src: "assets/basketBallRobot/basket-assembly.mp4" },
+      { type: "image", label: "System", src: "assets/basketBallRobot/basket-system.png", alt: "농구 슈팅 로봇 시스템 구성", className: "diagram" },
+      { type: "video", label: "Test 1", src: "assets/basketBallRobot/basket-demo-1.mp4" },
+      { type: "video", label: "Test 2", src: "assets/basketBallRobot/basket-demo-2.mp4" },
+      { type: "video", label: "Test 3", src: "assets/basketBallRobot/basket-demo-3.mp4" }
     ]
   },
   {
@@ -89,38 +88,39 @@ const portfolioProjects = [
     ],
     resultLesson: "<strong>팀 구현 결과:</strong> LiDAR 스캐닝과 매핑을 구현했지만 SLAM 기반 자율주행까지는 완성하지 못했습니다. AI Camera는 서보모터와 연계해 인체 추적과 장애물 감지를 구현했고, Thermal Camera는 AI Camera와의 연동에는 실패했지만 열원 감지 테스트를 완료했습니다. GPS 좌표를 프로그램과 앱에서 핀포인트로 지정·표시하는 기능을 구현했으며, 핀포인트 간 자율 이동은 구현하지 않았습니다. LoRa Module은 다중 로봇 관제 시스템의 기반으로 구성했으나 별도 검증은 진행하지 않았습니다.<br><br><strong>개인 기여:</strong> 로봇 모델링, 하드웨어 통합과 배선을 담당했습니다. 컴퓨터공학과·자동차공학과 팀원들과 역할을 분담하며, 각 분야의 결과물을 하나의 프로토타입으로 통합했습니다.<br><br><strong>주요 하드웨어:</strong> LiDAR, AI Camera, Thermal Camera, GPS Module, LoRa Module, Jetson Orin Nano, DC Motor, Servo Motor, Motor Driver, 24V Battery, Buck Converter",
     media: [
+      { type: "video", label: "Result", src: "assets/mountainDetectionRobot/mdr-result-web.mp4" },
       { type: "image", label: "Overview", src: "assets/mountainDetectionRobot/mdr-overview.PNG", alt: "Mountain Detection Robot 전체 모습" },
-      { type: "image", label: "Sketch", src: "assets/mountainDetectionRobot/mdr-sketch.PNG", alt: "Mountain Detection Robot 초기 스케치" },
       { type: "image", label: "Modeling", src: "assets/mountainDetectionRobot/mdr-modeling.PNG", alt: "Mountain Detection Robot CAD 모델링" },
       { type: "image", label: "Assembly", src: "assets/mountainDetectionRobot/mdr-assembly.PNG", alt: "Mountain Detection Robot 조립 구조" },
-      { type: "image", label: "Camera", src: "assets/mountainDetectionRobot/mdr-camera.PNG", alt: "Mountain Detection Robot 카메라 탐지 화면" },
       { type: "video", label: "LiDAR", src: "assets/mountainDetectionRobot/mdr-lidar.mp4" },
-      { type: "image", label: "GPS", src: "assets/mountainDetectionRobot/mdr-gps.PNG", alt: "Mountain Detection Robot GPS 화면" }
+      { type: "image", label: "Camera", src: "assets/mountainDetectionRobot/mdr-camera.PNG", alt: "Mountain Detection Robot 카메라 탐지 화면" },
+      { type: "image", label: "GPS", src: "assets/mountainDetectionRobot/mdr-gps.PNG", alt: "Mountain Detection Robot GPS 화면" },
+      { type: "image", label: "Sketch", src: "assets/mountainDetectionRobot/mdr-sketch.PNG", alt: "Mountain Detection Robot 초기 스케치" }
     ]
   },
   {
     id: "ros",
-    number: "Project 04",
+    number: "Project 05",
     title: "Custom ROS Mapping Robot",
     categories: ["robotics", "mapping"],
     featured: false,
-    thumbnail: null,
-    summary: "직접 구성한 모터·LiDAR·전원 시스템을 ROS 명령과 연결한 모바일 매핑 플랫폼입니다.",
-    shortSummary: "ROS 명령과 LiDAR 매핑을 연결한 커스텀 모바일 플랫폼입니다.",
-    tags: ["ROS", "YDLidar", "Serial", "Motor Control"],
-    lead: "상용 플랫폼이 아닌 커스텀 이동 로봇에서 Teleoperation, 모터 제어와 LiDAR 매핑 흐름을 구성한 프로젝트입니다.",
+    thumbnail: { src: "assets/rosMappingRobot/ros-overview.png", alt: "Honey Bot ROS 매핑 로봇 완성 모습" },
+    summary: "직접 설계한 이동 플랫폼에 ROS 2와 LiDAR 환경을 구축하며 하드웨어·소프트웨어 연동 가능성을 검토한 단기 프로젝트입니다.",
+    shortSummary: "ROS 2 환경과 LiDAR 시각화를 검토한 커스텀 모바일 플랫폼입니다.",
+    tags: ["ROS 2", "YDLidar", "LattePanda", "Mechanical Design"],
+    lead: "상용 플랫폼이 아닌 커스텀 이동 로봇을 직접 설계하고, ROS 2 환경 구축과 LiDAR 시각화 가능성을 검토한 프로젝트입니다.",
     info: [
-      { label: "Period", value: "TODO: 확인 필요" },
-      { label: "Team", value: "TODO: 확인 필요" },
-      { label: "Role", value: "TODO: 담당 범위 확인 필요" },
-      { label: "Type", value: "ROS Mapping" }
+      { label: "Period", value: "2025.06.12 - 2025.06.18" },
+      { label: "Team", value: "Personal Project" },
+      { label: "Role", value: "Robot System Design · Mechanical Design · ROS 2 Environment Setup" },
+      { label: "Type", value: "Ideal Dream Factory Project" }
     ],
     story: [
-      "YDLidar X4 Pro와 엔코더 모터를 사용한 커스텀 플랫폼에서 키보드 제어 명령을 받아 실제 바퀴 구동으로 전달하는 흐름을 구성했습니다.",
-      "ROS, RViz, 시리얼 통신과 Arduino 모터 제어가 연결되는 전체 데이터 흐름을 확인하는 데 집중했습니다."
+      "YDLidar X4 Pro, 엔코더 모터와 LattePanda Alpha를 사용한 커스텀 플랫폼을 직접 모델링하고 조립했습니다.",
+      "Ubuntu 24.04와 ROS 2 Jazzy 환경에서 YDLidar 데이터의 RViz2 시각화까지 구현했습니다. 이후 rosserial이 ROS 1 기반 패키지임을 확인하고 Foxy·Noetic 병행 환경을 검토했으나, 환경 전환과 모터 제어 연동은 프로젝트 기간 내 완료하지 못했습니다."
     ],
     problem: "직접 제작한 이동 플랫폼에서 ROS 명령, 시리얼 통신, 모터 제어와 LiDAR 좌표계를 끊김 없이 연결해야 했습니다.",
-    approach: "Teleoperation과 cmd_vel 흐름을 Arduino 구동 제어로 전달하고, LiDAR 장착 높이와 Static TF 설정을 함께 검토했습니다.",
+    approach: "ROS 2와 RViz 기반 LiDAR 시각화 환경을 구성하고, 이후 Teleoperation과 cmd_vel을 내장 Arduino 구동 제어로 전달하기 위한 통신 방식을 검토했습니다.",
     architectureFlow: false,
     architecture: [
       { title: "Keyboard Teleop", subtitle: "User Input", description: "주행 명령 입력" },
@@ -134,38 +134,40 @@ const portfolioProjects = [
       "Ubuntu와 ROS 버전, 컴퓨팅 보드의 호환성을 검토해야 하는 문제",
       "소프트웨어 명령과 실제 모터 응답 사이의 차이를 조정해야 하는 문제"
     ],
-    resultLesson: "TODO: 최종 ROS 버전, SLAM 패키지, 완성 지도와 반복 주행 결과 확인 필요.",
-    mediaPlaceholders: [
-      { title: "TODO", text: "대표 이미지: 완성된 로봇 플랫폼" },
-      { title: "TODO", text: "조립 구조: LiDAR 장착 위치와 구동계" },
-      { title: "TODO", text: "시스템 구성: ROS 노드, TF 또는 배선 구조" },
-      { title: "TODO", text: "핵심 결과: RViz 화면 또는 완성 지도" },
-      { title: "TODO", text: "작동 영상: 원격 조종 또는 반복 주행 시연" }
+    resultLesson: "짧은 제작 기간 안에 전체 목표를 완성하지는 못했습니다. Ubuntu 24.04와 ROS 2 Jazzy 환경을 구축하고 YDLidar의 LaserScan 데이터를 RViz2에서 시각화했지만, LattePanda Alpha에 내장된 ATmega32U4 기반 Arduino Leonardo와의 모터 제어 연동 및 SLAM 구현까지는 진행하지 못했습니다.<br><br>구현 과정에서 검토했던 rosserial이 ROS 1의 catkin 패키지이며 ROS 2에서 네이티브 통신 인터페이스로 직접 사용할 수 없다는 점을 확인했습니다. 이후 Ubuntu 20.04에서 ROS 2 Foxy와 ROS 1 Noetic·rosserial·ros1_bridge를 병행하는 구성을 검토했으나, 환경 전환은 완료하지 못했습니다.<br><br>향후에는 rosserial에 의존하기보다 네이티브 ROS 2 환경에서 micro-ROS 또는 별도의 시리얼 브리지 노드를 사용해 MCU를 연결할 계획입니다. 이 경험을 통해 운영체제·ROS 배포판·MCU 통신 방식을 설계 초기에 함께 검토해야 한다는 점을 배웠습니다.",
+    media: [
+      { type: "image", label: "Overview", src: "assets/rosMappingRobot/ros-overview.png", alt: "Honey Bot ROS 매핑 로봇 완성 모습" },
+      { type: "video", label: "Running", src: "assets/rosMappingRobot/ros-running-web.mp4" },
+      { type: "video", label: "RViz", src: "assets/rosMappingRobot/ros-rviz-web.mp4" },
+      { type: "image", label: "Modeling", src: "assets/rosMappingRobot/ros-modeling.PNG", alt: "Honey Bot ROS 매핑 로봇 CAD 모델링" },
+      { type: "image", label: "Structure", src: "assets/rosMappingRobot/ros-description.png", alt: "Honey Bot LiDAR와 구동 부품 구조 설명" },
+      { type: "image", label: "System", src: "assets/rosMappingRobot/ros-system.png", alt: "Honey Bot에서 계획한 ROS 2와 내장 Arduino 시스템 흐름" }
     ]
   },
   {
     id: "cleaning",
-    number: "Project 05",
+    number: "Project 04",
     title: "Line-Tracing Cleaning Robot",
     categories: ["robotics"],
     featured: false,
-    thumbnail: null,
+    thumbnail: { src: "assets/linetracingRobot/lcr-overview.png", alt: "Line-Tracing Cleaning Robot 완성 모습" },
     summary: "다중 컬러 센서와 엔코더 모터를 이용해 여러 색상의 경로를 순환하며 청소하도록 구성한 로봇입니다.",
     shortSummary: "다중 컬러 라인을 따라 반복 주행하는 청소 로봇입니다.",
     tags: ["Arduino Mega", "TCS34725", "TCA9548A", "State Machine"],
     lead: "색상 라인을 따라 이동하고 각 경로의 끝에서 방향을 전환해 다음 청소 구간으로 이동하는 로봇 프로젝트입니다.",
     info: [
-      { label: "Period", value: "TODO: 확인 필요" },
-      { label: "Team", value: "TODO: 확인 필요" },
-      { label: "Role", value: "TODO: 담당 범위 확인 필요" },
+      { label: "Period", value: "2025.03 - 2025.06" },
+      { label: "Team", value: "5 members" },
+      { label: "Role", value: "Programming · System Integration · Robot System Design" },
       { label: "Type", value: "Embedded Robotics" }
     ],
     story: [
       "Red, Blue, Light Green, Green 라인을 구분하고 갈색 바닥과의 차이를 이용해 지정된 청소 경로를 반복하도록 구성했습니다.",
-      "여러 컬러 센서를 동시에 사용하면서 주행, U턴과 청소 동작이 이어지는 상태 흐름을 설계했습니다."
+      "여러 컬러 센서를 동시에 사용하면서 주행, 커브, U턴과 청소 동작이 이어지는 상태 흐름을 설계했습니다.",
+      "24V 13A 이상의 전력이 필요한 흡입 모터를 구동하기 위해 6S6P 배터리 시스템을 구성하고, 별도 스위치 대신 SSR로 흡입 모터를 제어했습니다."
     ],
     problem: "동일 I2C 주소를 사용하는 컬러 센서 3개를 연결하고, 센서별 편차를 보정하면서 복수 경로를 반복 주행해야 했습니다.",
-    approach: "TCA9548A I2C 멀티플렉서로 센서를 분리하고, 엔코더 모터와 경로 상태머신을 결합해 라인 추종과 U턴을 구성했습니다.",
+    approach: "TCA9548A I2C 멀티플렉서로 센서를 분리하고, 세 센서의 5단계 위치 오차와 라인을 벗어난 시간을 PID 오차값에 반영해 부드러운 주행과 커브·U턴을 구현했습니다. 바닥과 센서의 간격을 줄이기 위해 전면 센서 홀더를 추가했으며, 내부 서포트에 먼지가 걸리지 않도록 흡입관을 절반씩 나누어 출력한 뒤 접합했습니다.",
     architectureFlow: true,
     architecture: [
       { title: "Color Sensors", subtitle: "Line Detection", description: "바닥 색상 감지" },
@@ -176,16 +178,16 @@ const portfolioProjects = [
     ],
     challenges: [
       "동일 주소의 I2C 센서를 동시에 사용해야 하는 문제",
-      "센서 개체 편차와 바닥색에 따른 인식 차이를 보정해야 하는 문제",
-      "라인 추종과 U턴, 청소 동작을 하나의 상태 흐름으로 연결해야 하는 문제"
+      "센서와 바닥 사이의 거리 증가로 색상 감지 성능이 저하되는 문제",
+      "고전력 흡입 모터 제어와 배터리·배선 용량을 함께 확보해야 하는 문제",
+      "흡입관 내부와 하부 먼지함을 출력·배치하면서 정비성을 확보해야 하는 문제"
     ],
-    resultLesson: "TODO: 색상 기준값, 반복 주행 성공률과 개선 과정 확인 필요.",
-    mediaPlaceholders: [
-      { title: "TODO", text: "대표 이미지: 완성된 청소 로봇" },
-      { title: "TODO", text: "조립 구조: 컬러 센서 3개의 배치와 하부 구조" },
-      { title: "TODO", text: "시스템 구성: 센서, 멀티플렉서와 모터 연결" },
-      { title: "TODO", text: "핵심 메커니즘: 라인 추종 및 청소 장치" },
-      { title: "TODO", text: "작동 영상: 다중 색상 라인 반복 주행" }
+    resultLesson: "최종 시연에서 라인 트레이싱과 먼지 흡입 기능을 문제없이 선보였습니다. 센서 홀더 추가, 분할형 흡입관 제작, SSR 기반 흡입 모터 스위칭과 하부 먼지함 배치를 통해 제작 과정에서 발견한 문제를 보완했습니다.<br><br>다만 프로젝트 기간 중 소통과 예산의 제약으로 외관 완성도를 충분히 높이지 못했고, 코드 변경이 불가능한 Bluetooth LED 디스플레이를 구매해 계획했던 표시 기능을 적용하지 못했습니다. 정량적인 반복 주행 횟수와 성공률도 기록하지 않아 성능 수치로 제시하지 않았습니다.",
+    media: [
+      { type: "video", label: "Result", src: "assets/linetracingRobot/lcr-linetracing-web.mp4" },
+      { type: "video", label: "Cleaning", src: "assets/linetracingRobot/lcr-cleaning.mp4" },
+      { type: "image", label: "Overview", src: "assets/linetracingRobot/lcr-overview.png", alt: "Line-Tracing Cleaning Robot 완성 모습" },
+      { type: "image", label: "System", src: "assets/linetracingRobot/lcr-system.png", alt: "Line-Tracing Cleaning Robot 전원·구동·센서 시스템 구성", className: "diagram" }
     ]
   },
   {
@@ -199,7 +201,7 @@ const portfolioProjects = [
     tags: ["Klipper", "TMC2209", "24V System", "Mechanical Build"],
     lead: "부품 선정, 모델링, 조립과 재설계를 반복하며 완성도를 높이고 있는 개인 제작 프로젝트입니다.",
     info: [
-      { label: "Period", value: "TODO: 확인 필요" },
+      { label: "Period", value: "2025.01 - Present" },
       { label: "Team", value: "Personal Build" },
       { label: "Role", value: "Mechanical Design · Component Selection · System Integration" },
       { label: "Type", value: "Ongoing Personal Build" }

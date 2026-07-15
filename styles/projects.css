@@ -406,6 +406,11 @@
       border-radius: 0;
     }
 
+    .media-item.diagram,
+    .media-item.contain {
+      object-fit: contain;
+    }
+
     .media-item.is-active {
       display: block;
     }
