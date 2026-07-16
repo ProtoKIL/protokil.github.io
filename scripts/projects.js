@@ -196,7 +196,7 @@ const portfolioProjects = [
     title: "DIY Delta 3D Printer",
     categories: ["mechanical"],
     featured: true,
-    thumbnail: { src: "assets/delta3Dprinter/delta-modeling-1.png", alt: "DIY Delta 3D Printer CAD 모델링" },
+    thumbnail: { src: "assets/delta3Dprinter/delta-modeling-1.PNG", alt: "DIY Delta 3D Printer CAD 모델링" },
     summary: "PETG 브라켓과 ABS 툴헤드·핫엔드 마운트를 직접 설계하며 조립과 개선을 반복하고 있는 델타 3D 프린터 프로젝트입니다.",
     tags: ["Klipper", "TMC2209", "24V System", "Mechanical Build"],
     lead: "부품 선정, 모델링, 조립과 재설계를 반복하며 완성도를 높이고 있는 개인 제작 프로젝트입니다.",
