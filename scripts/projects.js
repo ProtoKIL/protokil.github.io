@@ -230,7 +230,7 @@ const portfolioProjects = [
     ],
     resultLesson: "현재 진행 중인 프로젝트로, 세 차례의 조립과 분해를 거치며 하부 시스템과 주요 부품 배치를 확정했습니다. 아직 최종 어셈블리 전이므로 출력 정밀도, 반복 출력 결과와 열 안정성 등 출력 성능 데이터는 측정하지 않았습니다. 완성된 프린터의 성능을 과장하기보다, 실제 조립에서 발견한 간섭을 모델링과 부품 재제작으로 해결하는 반복 설계 과정을 중심으로 기록하고 있습니다.<br><br><strong>다음 단계:</strong> 최종 어셈블리, Klipper 설정, 캘리브레이션과 출력 검증",
     media: [
-      { type: "image", label: "Modeling 1", src: "assets/delta3Dprinter/delta-modeling-1.png", alt: "DIY Delta 3D Printer CAD 모델링 전체 모습" },
+      { type: "image", label: "Modeling 1", src: "assets/delta3Dprinter/delta-modeling-1.PNG", alt: "DIY Delta 3D Printer CAD 모델링 전체 모습" },
       { type: "image", label: "Modeling 2", src: "assets/delta3Dprinter/delta-modeling-2.PNG", alt: "DIY Delta 3D Printer CAD 모델링 상세" },
       { type: "video", label: "Assembly Video", src: "assets/delta3Dprinter/delta-assem-proto-1.mp4" },
       { type: "image", label: "Electrical Assembly", src: "assets/delta3Dprinter/delta-elecassem.PNG", alt: "DIY Delta 3D Printer 하부 전장부 조립 모습" },
