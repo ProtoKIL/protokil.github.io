@@ -168,7 +168,7 @@ function renderProjectDetails() {
               <h2>${project.title}</h2>
               <p class="lead">${project.lead}</p>
             </div>
-            <a class="btn btn-primary" href="${project.id === "basketball" ? "#top" : "#projects"}">${project.id === "basketball" ? "Back to Top" : "Back to Projects"}</a>
+            <a class="btn btn-primary" href="#projects">Back to Projects</a>
           </div>
 
           ${info}
