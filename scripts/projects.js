@@ -182,7 +182,7 @@ const portfolioProjects = [
       "고전력 흡입 모터 제어와 배터리·배선 용량을 함께 확보해야 하는 문제",
       "흡입관 내부와 하부 먼지함을 출력·배치하면서 정비성을 확보해야 하는 문제"
     ],
-    resultLesson: "최종 시연에서 라인 트레이싱과 먼지 흡입 기능을 문제없이 선보였습니다. 센서 홀더 추가, 분할형 흡입관 제작, SSR 기반 흡입 모터 스위칭과 하부 먼지함 배치를 통해 제작 과정에서 발견한 문제를 보완했습니다.<br><br>다만 프로젝트 기간 중 소통과 예산의 제약으로 외관 완성도를 충분히 높이지 못했고, 코드 변경이 불가능한 Bluetooth LED 디스플레이를 구매해 계획했던 표시 기능을 적용하지 못했습니다. 정량적인 반복 주행 횟수와 성공률도 기록하지 않아 성능 수치로 제시하지 않았습니다.",
+    resultLesson: "최종 시연에서 라인 트레이싱과 먼지 흡입 기능을 문제없이 선보였습니다. 센서 홀더 추가, 분할형 흡입관 제작, SSR 기반 흡입 모터 스위칭과 하부 먼지함 배치를 통해 제작 과정에서 발견한 문제를 보완했습니다.<br><br>총 20회의 반복 주행에서 경로 이탈 3회(15%)와 U턴 실패 1회(5%)가 발생했습니다. 경로 이탈은 컬러 센서와 바닥 사이의 거리로 인한 인식 오류가 원인이었으며, 센서 홀더를 추가해 감지 거리를 보완했습니다. U턴 실패는 주행 중 바퀴가 모터 축에서 분리되면서 발생했습니다.<br><br>프로젝트 기간 중 소통과 예산의 제약으로 외관 완성도를 충분히 높이지 못했고, 코드 변경이 불가능한 Bluetooth LED 디스플레이를 구매해 계획했던 표시 기능을 적용하지 못했습니다.",
     media: [
       { type: "video", label: "Result", src: "assets/linetracingRobot/lcr-linetracing-web.mp4" },
       { type: "video", label: "Cleaning", src: "assets/linetracingRobot/lcr-cleaning.mp4" },
@@ -196,7 +196,7 @@ const portfolioProjects = [
     title: "DIY Delta 3D Printer",
     categories: ["mechanical"],
     featured: true,
-    thumbnail: { src: "assets/delta3Dprinter/delta-modeling-1.PNG", alt: "DIY Delta 3D Printer CAD 모델링" },
+    thumbnail: { src: "assets/delta3Dprinter/delta-modeling-1.png", alt: "DIY Delta 3D Printer CAD 모델링" },
     summary: "PETG 브라켓과 ABS 툴헤드·핫엔드 마운트를 직접 설계하며 조립과 개선을 반복하고 있는 델타 3D 프린터 프로젝트입니다.",
     tags: ["Klipper", "TMC2209", "24V System", "Mechanical Build"],
     lead: "부품 선정, 모델링, 조립과 재설계를 반복하며 완성도를 높이고 있는 개인 제작 프로젝트입니다.",
@@ -228,11 +228,16 @@ const portfolioProjects = [
       "약 14.6A급 24V 부하를 고려한 배선과 전원 구성이 필요한 문제",
       "델타 구조의 기하학적 오차와 베드 평면을 보정해야 하는 문제"
     ],
-    resultLesson: "현재 진행 중인 프로젝트로, 세 차례의 조립과 분해를 거치며 하부 시스템과 주요 부품 배치를 확정했습니다. 완성된 프린터의 성능을 과장하기보다, 실제 조립에서 발견한 간섭을 모델링과 부품 재제작으로 해결하는 반복 설계 과정을 중심으로 기록하고 있습니다.<br><br><strong>다음 단계:</strong> 최종 어셈블리, Klipper 설정, 캘리브레이션과 출력 검증",
+    resultLesson: "현재 진행 중인 프로젝트로, 세 차례의 조립과 분해를 거치며 하부 시스템과 주요 부품 배치를 확정했습니다. 아직 최종 어셈블리 전이므로 출력 정밀도, 반복 출력 결과와 열 안정성 등 출력 성능 데이터는 측정하지 않았습니다. 완성된 프린터의 성능을 과장하기보다, 실제 조립에서 발견한 간섭을 모델링과 부품 재제작으로 해결하는 반복 설계 과정을 중심으로 기록하고 있습니다.<br><br><strong>다음 단계:</strong> 최종 어셈블리, Klipper 설정, 캘리브레이션과 출력 검증",
     media: [
-      { type: "image", label: "Modeling 1", src: "assets/delta3Dprinter/delta-modeling-1.PNG", alt: "DIY Delta 3D Printer CAD 모델링 전체 모습" },
+      { type: "image", label: "Modeling 1", src: "assets/delta3Dprinter/delta-modeling-1.png", alt: "DIY Delta 3D Printer CAD 모델링 전체 모습" },
       { type: "image", label: "Modeling 2", src: "assets/delta3Dprinter/delta-modeling-2.PNG", alt: "DIY Delta 3D Printer CAD 모델링 상세" },
-      { type: "placeholder", label: "TODO", text: "추가 미디어 예정" }
+      { type: "video", label: "Assembly Video", src: "assets/delta3Dprinter/delta-assem-proto-1.mp4" },
+      { type: "image", label: "Electrical Assembly", src: "assets/delta3Dprinter/delta-elecassem.PNG", alt: "DIY Delta 3D Printer 하부 전장부 조립 모습" },
+      { type: "video", label: "Parts Video", src: "assets/delta3Dprinter/delta-parts.mp4", poster: "assets/delta3Dprinter/delta-parts.png" },
+      { type: "image", label: "Parts", src: "assets/delta3Dprinter/delta-parts.png", alt: "DIY Delta 3D Printer 제작 부품" },
+      { type: "image", label: "Toolhead", src: "assets/delta3Dprinter/delta-toolhead.png", alt: "DIY Delta 3D Printer 툴헤드와 핫엔드 마운트" },
+      { type: "image", label: "Toolhead PCB", src: "assets/delta3Dprinter/delta-toolhead-pcb.PNG", alt: "DIY Delta 3D Printer 툴헤드 배선 정리용 PCB" }
     ]
   }
 ];

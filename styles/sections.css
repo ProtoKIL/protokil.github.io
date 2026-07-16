@@ -310,11 +310,27 @@
     }
 
     .publication-note {
+      display: block;
       margin-top: 18px;
       padding: 16px 18px;
       border: 1px solid var(--line);
       border-radius: 16px;
       background: rgba(255, 255, 255, 0.035);
+      color: inherit;
+      text-decoration: none;
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    }
+
+    .publication-note:hover,
+    .publication-note:focus-visible {
+      border-color: var(--accent-2);
+      background: rgba(255, 255, 255, 0.07);
+      transform: translateY(-2px);
+    }
+
+    .publication-note:focus-visible {
+      outline: 2px solid var(--accent-2);
+      outline-offset: 3px;
     }
 
     .publication-note h4 {
