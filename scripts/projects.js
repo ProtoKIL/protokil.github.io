@@ -187,7 +187,7 @@ const portfolioProjects = [
     title: "DIY Delta 3D Printer",
     categories: ["mechanical"],
     featured: true,
-    thumbnail: { src: "assets/delta3Dprinter/delta-modeling-1.png", alt: "DIY Delta 3D Printer CAD 모델링" },
+    thumbnail: { src: "assets/delta3Dprinter/delta-modeling-1.PNG", alt: "DIY Delta 3D Printer CAD 모델링" },
     summary: "PETG 브라켓과 ABS 툴헤드·핫엔드 마운트를 직접 설계하며 조립과 개선을 반복한 델타 3D 프린터 프로젝트입니다.",
     tags: ["Klipper", "TMC2209", "24V System", "Mechanical Build"],
     lead: "부품 선정부터 모델링·조립·재설계까지 반복한 개인 델타 3D 프린터 프로젝트",
@@ -218,7 +218,7 @@ const portfolioProjects = [
     result: "하부 시스템과 주요 부품 배치를 확정하고 어셈블리 완료.\n베드 및 툴헤드 가열 PID 적용, Klipper config 작성 완료\n델타 기하학 보정 (레벨링) 완료, 베드 메쉬 생성 완료",
     lesson: "실물 조립 결과를 CAD에 되돌리는 반복 설계의 중요성을 확인했습니다. 설정과 보정을 완료했으며 다음 단계는 출력 시험입니다.",
     media: [
-      { type: "image", label: "Modeling", src: "assets/delta3Dprinter/delta-modeling-1.png", alt: "DIY Delta 3D Printer CAD 모델링 전체 모습" },
+      { type: "image", label: "Modeling", src: "assets/delta3Dprinter/delta-modeling-1.PNG", alt: "DIY Delta 3D Printer CAD 모델링 전체 모습" },
       { type: "image", label: "Modeling 2", src: "assets/delta3Dprinter/delta-modeling-2.PNG", alt: "DIY Delta 3D Printer CAD 모델링 상세" },
       { type: "video", label: "Assembly Video", src: "assets/delta3Dprinter/delta-assem-proto-1.mp4" },
       { type: "image", label: "Electrical Assembly", src: "assets/delta3Dprinter/delta-elecassem.PNG", alt: "DIY Delta 3D Printer 하부 전장부 조립 모습" },
